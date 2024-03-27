@@ -10,12 +10,25 @@
 }
 
 .card {
-    width: 250px;
+    width: 400px;
     background-color: #343a40;
     color: #fff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     margin: 10px;
     border-radius: 10px;
+}
+
+.card-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #495057;
+}
+
+.card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
 }
 
 .card-content {
@@ -29,7 +42,18 @@
 
 .card-description {
     font-size: 16px;
-    color: #666;
+    color: #fff;
+    margin-top: 10px;
+}
+
+.card-button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background-color: #ffc107;
+    color: black;
+    cursor: pointer;
+    border-radius: 5px;
 }
 
 @media screen and (max-width: 600px) {
