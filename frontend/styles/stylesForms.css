@@ -29,3 +29,43 @@
     cursor: pointer;
     border-radius: 5px;
 }
+
+.post-form {
+    width: 300px;
+    padding: 30px;
+    background-color: #343a40;
+    margin: auto;
+    margin-top: 30px;
+    border-radius: 10px;
+}
+
+.post-form h2 {
+    text-align: center;
+    color:white;
+}
+
+.post-form input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #dddddd;
+    border-radius: 5px;
+}
+
+.post-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #dddddd;
+    border-radius: 5px;
+}
+
+.post-form button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background-color: #ffc107;
+    color: black;
+    cursor: pointer;
+    border-radius: 5px;
+}
