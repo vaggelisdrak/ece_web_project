@@ -21,11 +21,25 @@
     width: 100%;
     padding: 10px;
     padding-left: 30px;
-    margin: 10px 0;
+    margin: 0;
     border: 1px solid #dddddd;
     border-radius: 5px;
     font-size: 14px;
     color: #333;
+}
+
+.login-form .input-group-text {
+    height: calc(1.5em + .75rem + 7px); 
+    color: #333;
+}
+
+.login-form .input-group-text i {
+    font-size: 14px;
+}
+
+.login-form input:focus {
+    outline: none;
+    box-shadow: 0 0 0 0.2rem rgba(240, 208, 4, 0.527);
 }
 
 .login-form button {
@@ -46,6 +60,7 @@
     background-color: #ffc107;
     color: black;
 }
+
 /************ POST FORM **********************/
 
 
@@ -108,3 +123,4 @@
     background-color: #ffc107;
     color: black;
 }
+

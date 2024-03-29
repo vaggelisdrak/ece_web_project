@@ -21,6 +21,10 @@
       integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
       crossorigin="anonymous"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -40,31 +44,13 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a class="nav-link" href="LogIn.html" target="_blank">Login</a>
+            <a class="nav-link" href="LogIn.html">Login</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="Register.html" target="_blank"
-              >Register</a
-            >
+            <a class="nav-link" href="Register.html">Register</a>
           </li>
-          <li class="nav-item dropdown">
-            <a
-              class="nav-link dropdown-toggle"
-              href="#"
-              id="navbarDropdown"
-              role="button"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-            >
-              Dropdown
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">Something else here</a>
-            </div>
+          <li class="nav-item">
+            <a class="nav-link" href="history.html">History</a>
           </li>
           <li class="nav-item">
             <a class="nav-link disabled" href="#">Disabled</a>
@@ -83,11 +69,32 @@
         </form>
       </div>
     </nav>
+
     <div class="login-form">
       <h2>Sign In</h2>
       <form>
-        <input type="text" placeholder="Username" required />
-        <input type="password" placeholder="Password" required />
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text"><i class="fas fa-user"></i></span>
+          </div>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Username"
+            required
+          />
+        </div>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text"><i class="fas fa-lock"></i></span>
+          </div>
+          <input
+            type="password"
+            class="form-control"
+            placeholder="Confirm Password"
+            required
+          />
+        </div>
         <button type="submit">Sign In</button>
       </form>
     </div>
