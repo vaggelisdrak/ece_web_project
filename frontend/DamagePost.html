@@ -21,6 +21,10 @@
       integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
       crossorigin="anonymous"
     />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+    />
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -87,9 +91,22 @@
     <div class="post-form">
       <h2>Post a Damage</h2>
       <form>
-        <input type="text" placeholder="Location" required />
-        <input type="file" accept="image/*" required />
-        <textarea placeholder="Description" required></textarea>
+        <div class="input-group">
+          <span class="input-group-addon"
+            ><i class="fas fa-map-marker-alt"></i
+          ></span>
+          <input type="text" placeholder="Location" required />
+        </div>
+        <div class="input-group">
+          <span class="input-group-addon"><i class="fas fa-image"></i></span>
+          <input type="file" accept="image/*" required />
+        </div>
+        <div class="input-group">
+          <span class="input-group-addon"
+            ><i class="fas fa-pencil-alt"></i
+          ></span>
+          <textarea placeholder="Description" required></textarea>
+        </div>
         <button type="submit">Post</button>
       </form>
     </div>
