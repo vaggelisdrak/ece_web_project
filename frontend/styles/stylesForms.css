@@ -28,14 +28,15 @@
     color: black;
     cursor: pointer;
     border-radius: 5px;
+    margin-top: 10px;
 }
 
 .post-form {
-    width: 300px;
+    width: 350px;
     padding: 30px;
     background-color: #343a40;
     margin: auto;
-    margin-top: 30px;
+    margin-top: 50px;
     border-radius: 10px;
 }
 
