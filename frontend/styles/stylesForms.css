@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
 
+.body-login {
+    background-color: #1b1a1a;
+}
+
 .login-form {
     font-family: 'Roboto Mono', monospace;
     width: 300px;
@@ -63,6 +67,9 @@
 
 /************ POST FORM **********************/
 
+.body-damage {
+    background-color: #1b1a1a;
+}
 
 .post-form {
     font-family: 'Roboto Mono', monospace;
