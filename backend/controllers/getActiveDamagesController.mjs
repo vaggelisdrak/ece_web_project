@@ -1,3 +1,3 @@
-export const test = (req,res) =>{
+export const home = (req,res) =>{
    res.render('home');
 };
