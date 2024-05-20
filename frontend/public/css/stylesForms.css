@@ -131,3 +131,76 @@
     color: black;
 }
 
+
+/************* table ********************/
+
+/* background color of the table header */
+.table thead th {
+    background-color: #343a40; 
+    color: #fff; 
+}
+
+/* background color of the table rows */
+.table tbody tr {
+    background-color: #f8f9fa; 
+}
+
+/* color of the table text */
+.table tbody tr td {
+    color: #343a40; 
+    border: none; 
+}
+
+.table tbody tr th {
+    color: #343a40; 
+    border: none; 
+}
+
+/* font family of the table text */
+.table {
+    font-family: 'Roboto Mono', monospace;
+    letter-spacing: 1px;
+    border: none;
+}
+
+.btn.btn-link {
+    border: none;
+}
+
+.btn-link {
+    color: #343a40 !important;
+    text-decoration: none !important;
+}
+
+.btn-link:hover {
+    color: #ffc107 !important;
+    text-decoration: none !important;
+}
+
+.dataTables_filter input {
+    color: #ffc107; /* Change the text color */
+    font-size: 16px; /* Change the font size */
+    background-color: #f8f9fa; /* Change the background color */
+}
+
+.dataTables_length select {
+    color: #ffc107; /* Change the text color */
+    font-size: 16px; /* Change the font size */
+    background-color: #f8f9fa; /* Change the background color */
+}
+
+.dataTables_paginate .paginate_button {
+    color: #ffc107; /* Change the text color */
+    font-size: 16px; /* Change the font size */
+    background-color: #f8f9fa; /* Change the background color */
+}
+
+.dataTables_filter label,
+.dataTables_length label,
+.dataTables_info,
+.dataTables_paginate .paginate_button {
+    color: #ffffff; /* White color */
+}
+
+
+/********************************************/
