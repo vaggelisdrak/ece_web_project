@@ -24,6 +24,12 @@ app.set('view engine', 'hbs');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+// Error handling middleware
+app.use((err, req, res, next) => {
+   console.error(err.stack);
+   res.status(500).render('error', { error: 'An error has happened' });
+});
+
 //Routes
 app.use('/', homeRoute);
 app.use('/', authRoute);
