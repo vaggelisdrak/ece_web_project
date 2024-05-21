@@ -71,7 +71,9 @@
                         </div>
                     </div>
                 </div>
-                <td>In progress</td>
+                <td>
+                    <p class="status">In progress</p>
+                </td>
             </tr>
             <!-- Other rows... -->
             <!-- Other rows... -->
@@ -125,7 +127,9 @@
                         </div>
                     </div>
                 </div>
-                <td>Fixed</td>
+                <td>
+                    <p class="status">Fixed</p>
+                </td>
             </tr>
             <!-- Other rows... -->
             <!-- Other rows... -->
@@ -179,7 +183,9 @@
                         </div>
                     </div>
                 </div>
-                <td>To Fix</td>
+                <td>
+                    <p class="status">To Fix</p>
+                </td>
             </tr>
             <!-- Other rows... -->
         </tbody>
@@ -199,6 +205,21 @@
 
         // Set the button title to the full modal body text
         modalButton.title = modalBody;
+    }
+
+    var statusCells = document.getElementsByClassName('status');
+
+    for (var i = 0; i < statusCells.length; i++) {
+        var statusCell = statusCells[i];
+        var statusText = statusCell.textContent.trim().toLowerCase();
+
+        if (statusText === 'fixed') {
+            statusCell.classList.add('status-fixed');
+        } else if (statusText === 'to fix') {
+            statusCell.classList.add('status-to-fix');
+        } else if (statusText === 'in progress') {
+            statusCell.classList.add('status-in-progress');
+        }
     }
 </script>
 

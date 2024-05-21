@@ -231,5 +231,17 @@
     height: 300px; /* Adjust as needed */
 }
 
+.status-fixed {
+    color: green;
+}
+
+.status-to-fix {
+    color: red;
+}
+
+.status-in-progress {
+    color: orange;
+}
+
 /********************************************/
 
