@@ -68,13 +68,12 @@ export let getUserDamageTicket = async (userId, damageTicketId) => {
 export let addDamageTicket = async (newDamageTicket, userId) => {
     const query = `
         INSERT INTO "DamageTicket" 
-        ("status", "damage_date", "image", "location", "category", "description", "user_ID", "report_date")
+        ("status", "image", "location", "category", "description", "user_ID", "report_date")
         VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
         RETURNING *;
     `;
     const values = [
         newDamageTicket.status,
-        newDamageTicket.damageDate,
         newDamageTicket.image,
         newDamageTicket.location,
         newDamageTicket.category,
@@ -98,7 +97,6 @@ export let addDamageTicket = async (newDamageTicket, userId) => {
         }
     }
 };
-
 export let updateDamageTicket = async (damageTicketId, updatedFields) => {
     // Construct the SET part of the SQL query dynamically based on the fields provided in updatedFields
     const setClause = Object.keys(updatedFields)
@@ -241,11 +239,11 @@ export let getAllAdmins = async () => {
 };
 
 // Get All Technicians 
-
 export let getAllTechnicians = async () => {
     const query = 'SELECT * FROM "Technician"';
+    let client;
     try {
-        const client = await pool.connect();
+        client = await pool.connect();
         const result = await client.query(query);
         console.log(result.rows);
         return result.rows;

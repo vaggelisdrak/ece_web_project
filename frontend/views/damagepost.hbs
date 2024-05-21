@@ -1,9 +1,9 @@
 <div class="post-form">
-  <h2>Post a Damage</h2>
+  <h2>Post a Damage Ticket</h2>
   <form>
       <div class="input-group">
           <span class="input-group-addon"><i class="fas fa-map-marker-alt"></i></span>
-          <input list="locations" type="text" placeholder="Location" required />
+          <input list="locations" type="text" placeholder="Location" name="location" required />
           <datalist id="locations">
               <option value="Area-1">
               <option value="Area-2">
@@ -13,15 +13,33 @@
               <option value="Area-6">
               <option value="Area-7">
               <option value="Area-8">
+              <option value="Area-9">
+              <option value="Area-10">
           </datalist>
       </div>
       <div class="input-group">
           <span class="input-group-addon"><i class="fas fa-image"></i></span>
-          <input type="file" accept="image/*" required />
+          <input type="file" accept="image/*" name="image" required />
       </div>
+        <div class="input-group">
+            <span class="input-group-addon"><i class="fas fa-tags"></i></span>
+            <input list="categories" type="text" placeholder="Category" name="category" required />
+            <datalist id="categories">
+                <option value="Area-1">
+                <option value="Area-2">
+                <option value="Area-3">
+                <option value="Area-4">
+                <option value="Area-5">
+                <option value="Area-6">
+                <option value="Area-7">
+                <option value="Area-8">
+                <option value="Area-9">
+                <option value="Area-10">
+            </datalist>
+        </div>
       <div class="input-group">
           <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
-          <textarea placeholder="Description" required></textarea>
+          <textarea placeholder="Description" name="description" required></textarea>
       </div>
       <button type="submit">Post</button>
   </form>

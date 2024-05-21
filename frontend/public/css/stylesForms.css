@@ -73,7 +73,7 @@
 
 .post-form {
     font-family: 'Roboto Mono', monospace;
-    width: 350px;
+    width: auto;
     padding: 30px;
     background-color: #343a40;
     margin: auto;

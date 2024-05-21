@@ -20,7 +20,8 @@ FOREIGN KEY ("user_ID") REFERENCES "User" ("id") ON UPDATE CASCADE ON DELETE CAS
 CREATE TABLE IF NOT EXISTS "Technician" ( "id" serial PRIMARY KEY,
 "full_name" varchar(255) NOT NULL,
 "email" varchar(255) UNIQUE NOT NULL,
-"phone_number" varchar(20) NOT NULL);
+"phone_number" varchar(20) NOT NULL,
+"specialty" varchar(255) NOT NULL);
 
 
 CREATE TABLE IF NOT EXISTS "Worker"

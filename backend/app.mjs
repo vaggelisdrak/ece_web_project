@@ -6,6 +6,7 @@ import * as dotenv from 'dotenv'
 import homeRoute from './routes/homeRoute.mjs'
 import authRoute from './routes/authRoute.mjs'
 import adminRoute from './routes/adminRoute.mjs'
+import workerRoute from './routes/workerRoute.mjs'
 import path from 'path';
 import userSession from './app-setup/app-setup-session.mjs';
 
@@ -37,6 +38,7 @@ app.use((err, req, res, next) => {
 app.use('/', homeRoute);
 app.use('/', authRoute);
 app.use('/', adminRoute);
+app.use('/', workerRoute);
 
 const server = app.listen(port, () => { 
     console.log(`Server is running on http://127.0.0.1:${port}`)
