@@ -16,7 +16,7 @@
         </select>
     </div>
 
-    <table id="myTable" class="table table-light table-striped">
+    <table id="myTable" class="admintable table-light table-striped">
         <thead>
             <tr>
                 <th scope="col">#</th>
@@ -25,6 +25,7 @@
                 <th scope="col">Image</th>
                 <th scope="col">Description</th>
                 <th scope="col">Status</th>
+                <th scope="col">Edit</th>
             </tr>
         </thead>
         <tbody>
@@ -85,6 +86,17 @@
                 <td>
                     <p class="status">In progress</p>
                 </td>
+                <td> 
+                    <button type="button" class="btn btn-link icon-button">
+                        <i class="fas fa-pencil-alt"></i> 
+                    </button>
+                    <button type="button" class="btn btn-link icon-button">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                    <button type="button" class="btn btn-link icon-button">
+                        <i class="fas fa-user"></i> 
+                    </button>
+                </td>
             </tr>
             <!-- Other rows... -->
             <!-- Other rows... -->
@@ -141,117 +153,16 @@
                 <td>
                     <p class="status">Fixed</p>
                 </td>
-            </tr>
-            <!-- Other rows... -->
-            <!-- Other rows... -->
-            <tr>
-                <th scope="row">3</th>
-                <td>8/10/2024</td>
-                <td>Area</td>
-                <td>
-                    <button type="button" class="btn btn-link imageModalButton" data-toggle="modal" data-target="#imageModal1"> 
-                        View
-                    </button>
-                    <div class="modal fade" id="imageModal1" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel1" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="imageModalLabel1">Image</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <img src="https://via.placeholder.com/150" alt="Image description" class="img-fluid">
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </td>
                 <td> 
-                    <button type="button" class="btn btn-link modalButton" data-toggle="modal" data-target="#exampleModal">
-                        Click to view text
+                    <button type="button" class="btn btn-link icon-button">
+                        <i class="fas fa-pencil-alt"></i> 
                     </button>
-                </td>
-                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Description</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body modalBody">
-                                fgfgfhgf fdisfkh dfbufdjgbgfudfvn c fhugurhjfbgdfugr vfgfgdfghfjgufdhgfnbvjhfdgvf
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <td>
-                    <p class="status">To Fix</p>
-                </td>
-            </tr>
-            <!-- Other rows... -->
-            <!-- Other rows... -->
-            <tr>
-                <th scope="row">4</th>
-                <td>2/10/2024</td>
-                <td>Area 2</td>
-                <td>
-                    <button type="button" class="btn btn-link imageModalButton" data-toggle="modal" data-target="#imageModal1"> 
-                        Image
+                    <button type="button" class="btn btn-link icon-button">
+                        <i class="fas fa-trash"></i>
                     </button>
-                    <div class="modal fade" id="imageModal1" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel1" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="imageModalLabel1">Image</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <img src="https://via.placeholder.com/150" alt="Image description" class="img-fluid">
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </td>
-                <td> 
-                    <button type="button" class="btn btn-link modalButton" data-toggle="modal" data-target="#exampleModal">
-                        Click to view text
+                    <button type="button" class="btn btn-link icon-button">
+                        <i class="fas fa-user"></i> 
                     </button>
-                </td>
-                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Description</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body modalBody">
-                                fgfgfhgf fdisfkh dfbufdjgbgfudfvn c fhugurhjfbgdfugr
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <td>
-                    <p class="status">Fixed</p>
                 </td>
             </tr>
             <!-- Other rows... -->

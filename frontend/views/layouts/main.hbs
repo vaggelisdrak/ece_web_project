@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="css/stylesForms.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <body style="background-color: rgb(32, 26, 26);">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -80,6 +81,18 @@
                     }
                 ]
             });
+        });
+
+        $('.admintable').DataTable({
+            columnDefs: [
+                { targets: [2, 3, 4, 6], orderable: false },
+                { 
+                    targets: [1], 
+                    render: function (data) {
+                        return moment(data).format().slice(0, 10);
+                    }
+                }
+            ]
         });
     </script>
 </body>

@@ -147,8 +147,17 @@
     color: rgb(216, 214, 214); 
 }
 
+.admintable thead th {
+    background-color: #343a40; 
+    color: rgb(216, 214, 214); 
+}
+
 /* background color of the table rows */
 .table tbody tr {
+    color: rgb(216, 214, 214); 
+}
+
+.admintable tbody tr {
     color: rgb(216, 214, 214); 
 }
 
@@ -158,13 +167,31 @@
     border: none; 
 }
 
+.admintable tbody tr td {
+    color: #343a40; 
+    border: none; 
+}
+
 .table tbody tr th {
+    color: #343a40; 
+    border: none; 
+}
+
+.admintable tbody tr th {
     color: #343a40; 
     border: none; 
 }
 
 /* font family of the table text */
 .table {
+    font-family: 'Roboto Mono', monospace;
+    letter-spacing: 1px;
+    border: none;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.admintable {
     font-family: 'Roboto Mono', monospace;
     letter-spacing: 1px;
     border: none;
@@ -220,6 +247,10 @@
 }
 
 .table thead th {
+    border-top: none;
+}
+
+.admintable thead th {
     border-top: none;
 }
 
@@ -328,3 +359,6 @@
     color: darkgray;
 }
 
+.icon-button {
+    padding: 0 5px; /* Adjust as needed */
+}
