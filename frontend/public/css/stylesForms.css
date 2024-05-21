@@ -134,15 +134,22 @@
 
 /************* table ********************/
 
+.damages.title {
+    font-family: 'Roboto Mono', monospace;
+    text-align: center;
+    color: rgb(216, 214, 214);
+    margin-bottom: 40px;
+}
+
 /* background color of the table header */
 .table thead th {
     background-color: #343a40; 
-    color: #fff; 
+    color: rgb(216, 214, 214); 
 }
 
 /* background color of the table rows */
 .table tbody tr {
-    background-color: #f8f9fa; 
+    color: rgb(216, 214, 214); 
 }
 
 /* color of the table text */
@@ -161,6 +168,8 @@
     font-family: 'Roboto Mono', monospace;
     letter-spacing: 1px;
     border: none;
+    border-radius: 10px;
+    overflow: hidden;
 }
 
 .btn.btn-link {
@@ -180,27 +189,47 @@
 .dataTables_filter input {
     color: #ffc107; /* Change the text color */
     font-size: 16px; /* Change the font size */
-    background-color: #f8f9fa; /* Change the background color */
+    background-color: rgb(216, 214, 214); /* Change the background color */
 }
 
 .dataTables_length select {
-    color: #ffc107; /* Change the text color */
+    color: rgb(216, 214, 214); /* Change the text color */
     font-size: 16px; /* Change the font size */
-    background-color: #f8f9fa; /* Change the background color */
+}
+
+/* Change the text color of the dropdown options */
+.dataTables_length select option {
+    color: #212529; /* Dark grey color */
 }
 
 .dataTables_paginate .paginate_button {
     color: #ffc107; /* Change the text color */
     font-size: 16px; /* Change the font size */
-    background-color: #f8f9fa; /* Change the background color */
+    background-color: rgb(216, 214, 214); /* Change the background color */
 }
 
 .dataTables_filter label,
 .dataTables_length label,
-.dataTables_info,
-.dataTables_paginate .paginate_button {
-    color: #ffffff; /* White color */
+.dataTables_info {
+    color: rgb(216, 214, 214) !important; 
+    font-family: 'Roboto Mono', monospace;
 }
 
+.dataTables_paginate .paginate_button {
+    font-family: 'Roboto Mono', monospace;
+}
+
+.table thead th {
+    border-top: none;
+}
+
+/* Center and enlarge the image in the modal */
+.modal-body img {
+    display: block;
+    margin: auto;
+    width: 300px; /* Adjust as needed */
+    height: 300px; /* Adjust as needed */
+}
 
 /********************************************/
+
