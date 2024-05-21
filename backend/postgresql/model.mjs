@@ -239,3 +239,20 @@ export let getAllAdmins = async () => {
         if (client) client.release();
     }
 };
+
+// Get All Technicians 
+
+export let getAllTechnicians = async () => {
+    const query = 'SELECT * FROM "Technician"';
+    try {
+        const client = await pool.connect();
+        const result = await client.query(query);
+        console.log(result.rows);
+        return result.rows;
+    } catch (err) {
+        console.error('Error fetching Technicians', err);
+        throw err;
+    } finally {
+        await client.release();
+    }
+};

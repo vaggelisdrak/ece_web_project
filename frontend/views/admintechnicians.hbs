@@ -17,45 +17,21 @@
             </tr>
         </thead>
         <tbody>
-            <!-- Other rows... -->
-            <tr>
-                <th scope="row">1</th>
-                <td>Jayson Tatum</td>
-                <td>Jayson@gmail.com</td>
-                <td>9787651248</td>
-                <td>Electrician</td>
-            </tr>
-            <!-- Other rows... -->
-            <!-- Other rows... -->
-            <tr>
-                <th scope="row">2</th>
-                <td>Jayson Tatum</td>
-                <td>Jayson@gmail.com</td>
-                <td>9787651248</td>
-                <td>Electrician</td>
-            </tr>
-            <!-- Other rows... -->
-            <!-- Other rows... -->
-            <tr>
-                <th scope="row">3</th>
-                <td>Jayson Tatum</td>
-                <td>Jayson@gmail.com</td>
-                <td>9787651248</td>
-                <td>Electrician</td>
-            </tr>
-            <!-- Other rows... -->
-            <!-- Other rows... -->
-            <tr>
-                <th scope="row">4</th>
-                <td>Jayson Tatum</td>
-                <td>Jayson@gmail.com</td>
-                <td>9787651248</td>
-                <td>Electrician</td>
-            </tr>
-            <!-- Other rows... -->
+            
+            {{#each technicians}}
+                <tr>
+                    <th scope="row">{{this.id}}</th>
+                    <td>{{this.full_name}}</td>
+                    <td>{{this.email}}</td>
+                    <td>{{this.phone_number}}</td>
+                    <td>{{this.specialty}}</td>
+                </tr>
+            {{/each}}
+
         </tbody>
     </table>
 </div>
+
 
 
 
