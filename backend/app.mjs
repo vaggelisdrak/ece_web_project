@@ -6,6 +6,7 @@ import * as dotenv from 'dotenv'
 import homeRoute from './routes/homeRoute.mjs'
 import authRoute from './routes/authRoute.mjs'
 import path from 'path';
+import userSession from './app-setup/app-setup-session.mjs';
 
 dotenv.config();
 
@@ -23,6 +24,7 @@ app.set('view engine', 'hbs');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(userSession)
 
 // Error handling middleware
 app.use((err, req, res, next) => {

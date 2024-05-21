@@ -1,18 +1,23 @@
 <div class="login-form">
-    <h2>Sign In</h2>
-    <form>
+    <h2>Login</h2>
+    <form action="/signin" method="post">
         <div class="input-group">
             <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-user"></i></span>
             </div>
-            <input type="text" class="form-control" placeholder="Username" required />
+            <input type="text" class="form-control" placeholder="Username" name="username" required />
         </div>
         <div class="input-group">
             <div class="input-group-prepend">
                 <span class="input-group-text"><i class="fas fa-lock"></i></span>
             </div>
-            <input type="password" class="form-control" placeholder="Confirm Password" required />
+            <input type="password" class="form-control" placeholder="Password" name="password" required />
         </div>
+        {{#if message}}
+        <div class="alert alert-warning" role="alert">
+            {{message}}
+        </div>
+        {{/if}}
         <button type="submit">Sign In</button>
     </form>
 </div>
