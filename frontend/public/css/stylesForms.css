@@ -141,6 +141,13 @@
     margin-bottom: 40px;
 }
 
+.technicians.title {
+    font-family: 'Roboto Mono', monospace;
+    text-align: center;
+    color: rgb(216, 214, 214);
+    margin-bottom: 40px;
+}
+
 /* background color of the table header */
 .table thead th {
     background-color: #343a40; 
@@ -152,12 +159,21 @@
     color: rgb(216, 214, 214); 
 }
 
+.technicianstable thead th {
+    background-color: #343a40; 
+    color: rgb(216, 214, 214); 
+}
+
 /* background color of the table rows */
 .table tbody tr {
     color: rgb(216, 214, 214); 
 }
 
 .admintable tbody tr {
+    color: rgb(216, 214, 214); 
+}
+
+.technicians tbody tr {
     color: rgb(216, 214, 214); 
 }
 
@@ -172,12 +188,22 @@
     border: none; 
 }
 
+.technicianstable tbody tr td {
+    color: #343a40; 
+    border: none; 
+}
+
 .table tbody tr th {
     color: #343a40; 
     border: none; 
 }
 
 .admintable tbody tr th {
+    color: #343a40; 
+    border: none; 
+}
+
+.technicianstable tbody tr th {
     color: #343a40; 
     border: none; 
 }
@@ -192,6 +218,14 @@
 }
 
 .admintable {
+    font-family: 'Roboto Mono', monospace;
+    letter-spacing: 1px;
+    border: none;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.technicianstable {
     font-family: 'Roboto Mono', monospace;
     letter-spacing: 1px;
     border: none;
@@ -283,6 +317,18 @@
 
 /******* status drop down *************/
 
+.extra-bars{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.techlink {
+    display: block;
+    font-family: 'Roboto Mono', monospace;
+    color: rgb(216, 214, 214) !important;
+}
+
 .status-filter label {
     margin-right: -7px; /* Adjust as needed */
 }
@@ -306,6 +352,15 @@
 @media screen and (max-width: 650px) {
     .status-filter {
         text-align: center;
+        margin-bottom: 8px;
+    }
+    .extra-bars {
+        display: block; 
+        justify-content: initial; 
+        margin-bottom: 10px;
+    }
+    .techlink {
+        justify-content: center;
         margin-bottom: 8px;
     }
 }

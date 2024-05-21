@@ -91,6 +91,12 @@
                 }
             ]
         });
+
+        $('.technicianstable').DataTable({
+            columnDefs: [
+                { targets: [1, 2, 3, 4], orderable: false },
+            ]
+        });
     </script>
 </body>
 </html>

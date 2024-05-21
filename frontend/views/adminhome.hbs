@@ -6,14 +6,21 @@
 
 <div class="table-responsive">
 
-    <div class="status-filter">
-        <label for="statusFilter">Status:</label>
-        <select id="statusFilter">
-            <option value="">All</option>
-            <option value="fixed">Fixed</option>
-            <option value="to fix">To Fix</option>
-            <option value="in progress">In Progress</option>
-        </select>
+    <div class="extra-bars">
+        <a href="/admintechnicians" class="btn btn-link techlink">
+        <i class="fas fa-user"></i> 
+        Technicians List 
+        </a>
+
+        <div class="status-filter">
+            <label for="statusFilter">Status:</label>
+            <select id="statusFilter">
+                <option value="">All</option>
+                <option value="fixed">Fixed</option>
+                <option value="to fix">To Fix</option>
+                <option value="in progress">In Progress</option>
+            </select>
+        </div>
     </div>
 
     <table id="myTable" class="admintable table-light table-striped">
