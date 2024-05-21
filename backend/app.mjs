@@ -5,6 +5,7 @@ import mysql from 'mysql'
 import * as dotenv from 'dotenv'
 import homeRoute from './routes/homeRoute.mjs'
 import authRoute from './routes/authRoute.mjs'
+import adminRoute from './routes/adminRoute.mjs'
 import path from 'path';
 import userSession from './app-setup/app-setup-session.mjs';
 
@@ -35,6 +36,7 @@ app.use((err, req, res, next) => {
 //Routes
 app.use('/', homeRoute);
 app.use('/', authRoute);
+app.use('/', adminRoute);
 
 const server = app.listen(port, () => { 
     console.log(`Server is running on http://127.0.0.1:${port}`)
