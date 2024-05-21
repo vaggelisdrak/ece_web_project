@@ -281,5 +281,50 @@
 
 /****************** table **************************/
 
+.nav-item{
+    font-family: 'Roboto Mono', monospace;
+}
 
+.navbar-brand{
+    font-family: 'Roboto Mono', monospace;
+}
+
+.login-button {
+    background-color: rgb(40, 34, 34);
+    color: #d8a200;
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 12px;
+    margin-right: 10px;
+    width: 100px;
+}
+
+.login-button:hover {
+    background-color: #d8a200;
+    color: darkgray;
+}
+
+.register-button {
+    background-color: rgb(40, 34, 34);
+    color: #d8a200;
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 12px;
+    width: 100px;
+}
+
+.register-button:hover {
+    background-color: #d8a200;
+    color: darkgray;
+}
 
