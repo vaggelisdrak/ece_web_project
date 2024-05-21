@@ -252,6 +252,10 @@
 
 /******* status drop down *************/
 
+.status-filter label {
+    margin-right: -7px; /* Adjust as needed */
+}
+
 .status-filter {
     display: block;
     text-align: end;
@@ -262,7 +266,10 @@
 .status-filter select {
     font-family: 'Roboto Mono', monospace;
     color: rgb(216, 214, 214);
-    background: #333; /* Change this to match your theme */
+    background: #333; 
+    width: 212px;
+    height: 30px;
+    border-radius: 5px;
 }
 
 @media screen and (max-width: 650px) {
