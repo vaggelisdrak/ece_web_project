@@ -254,3 +254,20 @@ export let getAllTechnicians = async () => {
         await client.release();
     }
 };
+
+// Add a new Technician
+export let addTechnician = async (technician) => {
+    console.log('Function called');
+    const query = 'INSERT INTO "Technician" (id, full_name, email, phone_number, specialty) VALUES ($1, $2, $3, $4, $5)';
+    let client;
+    try {
+        client = await pool.connect();
+        await client.query(query, [technician.id, technician.name, technician.email, technician.contact, technician.specialty]);
+        console.log('Technician added successfully');
+    } catch (err) {
+        console.error('Error adding Technician', err);
+        throw err;
+    } finally {
+        await client.release();
+    }
+};

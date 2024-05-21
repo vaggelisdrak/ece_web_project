@@ -415,5 +415,39 @@
 }
 
 .icon-button {
-    padding: 0 5px; /* Adjust as needed */
+    padding: 0 5px; 
+}
+
+.back-button {
+    background-color: transparent;
+    border: none;
+    color: #d8a200;
+    font-size: 1.8em;
+    cursor: pointer;
+    margin-bottom: 8px;
+}
+
+.add-button {
+    position: fixed;
+    background-color: transparent;
+    border: none;
+    color: #d8a200;
+    font-size: 1.8em;
+    cursor: pointer;
+}
+
+.addtech{
+    background-color:#d8a200;
+    border: none;
+}
+
+.addtech:hover{
+    background-color:#000000;
+    border: none;
+}
+
+.form-control:focus {
+    outline: none !important;
+    border:1px solid #fec313;
+    box-shadow: 0 0 10px #fec313;
 }
