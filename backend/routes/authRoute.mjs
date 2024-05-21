@@ -1,11 +1,15 @@
 import express from 'express';
-import { signin, signout, signup , postdamage} from '../controllers/authController.mjs';
+import { showRegisterForm, showLogInForm, showPostDamageForm, doLogin, doRegister, doLogout} from '../controllers/authController.mjs';
 
 const router = express.Router();
 
-router.get("/signup",signup)//post
-router.get("/signin",signin)//post
-router.get("/signout",signout)
-router.get("/postdamage",postdamage)
+router.get("/signup",showRegisterForm)
+router.get("/signin",showLogInForm)
+router.get("/postdamage",showPostDamageForm)
+
+router.post("/signin",doLogin)
+router.post("/signup",doRegister)
+router.get("/logout",doLogout)
+
 
 export default router;

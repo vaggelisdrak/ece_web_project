@@ -1,5 +1,5 @@
 import express from 'express';
-import { home } from '../controllers/getActiveDamagesController.mjs';
+import { home } from '../controllers/getAllDamagesController.mjs';
 
 const router = express.Router();
 

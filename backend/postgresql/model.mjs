@@ -1,7 +1,6 @@
 // This file contains the model functions for the DamageTicket and User tables.
 import bcrypt from 'bcrypt'
 import pool from './connectdb.mjs';
-import e from 'express';
 
 
 // Exported Functions for the DamageTicket Table
@@ -165,7 +164,7 @@ export let getUserByEmail = async (email) => {
         const result = await client.query(query, values);
         return result.rows[0];
     } catch (err) {
-        console.error('Error getting user by username:', err);
+        console.error('Error getting user by email:', err);
         throw err;
     } finally {
         if (client) client.release();
