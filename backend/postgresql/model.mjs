@@ -222,3 +222,20 @@ export let registerUser = async (username, email, password) => {
         throw error;
     }
 }
+
+// Exported Functions for the Admin Table
+
+export let getAllAdmins = async () => {
+    const query = 'SELECT * FROM "Admin"';
+    let client;
+    try {
+        client = await pool.connect();
+        const result = await client.query(query);
+        return result.rows;
+    } catch (err) {
+        console.error('Error fetching admins:', err);
+        throw err;
+    } finally {
+        if (client) client.release();
+    }
+};

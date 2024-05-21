@@ -1,5 +1,5 @@
 import bcrypt from 'bcrypt'
-import { getUserByEmail, getUserByUsername, registerUser } from '../postgresql/model.mjs';
+import { getAllAdmins, getUserByEmail, getUserByUsername, registerUser } from '../postgresql/model.mjs';
 
 export const showPostDamageForm = (req, res) => {
     res.render('damagepost');
@@ -43,11 +43,20 @@ export let doLogin = async function (req, res) {
             const match = await bcrypt.compare(req.body.password, user.password);
             if (match) {
                 //Θέτουμε τη μεταβλητή συνεδρίας "loggedUserId"
-                req.session.loggedUserId = user.id;
-                //Αν έχει τιμή η μεταβλητή req.session.originalUrl, αλλιώς όρισέ τη σε "/" 
-                // res.redirect("/");            
-                const redirectTo = req.session.originalUrl || "/tasks";
-                console.log("redirecting to");
+                req.session.loggedUserId = user.id;     
+                // check if user is admin
+                const admins = await getAllAdmins();
+                let redirectTo;
+
+                if (admins.find(admin => admin.admin_ID === user.id)) {
+                    console.log("admin logged in");
+                    redirectTo = req.session.originalUrl || "/adminhome";
+                }
+                else {
+                    console.log("user logged in");
+                    req.session.isAdmin = false;
+                    redirectTo = req.session.originalUrl || "/workerhome";
+                }
                 res.redirect(redirectTo);
             }
             else {
