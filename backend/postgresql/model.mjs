@@ -5,9 +5,14 @@ import pool from './connectdb.mjs';
 
 // Exported Functions for the DamageTicket Table
 export let getAllDamageTickets = async () => {
-    const query = 'SELECT * FROM "DamageTicket"';
+    //const query = 'SELECT * FROM "DamageTicket"';
+   const query = `
+        SELECT dt.*, u.username AS user_username
+        FROM "DamageTicket" dt
+        INNER JOIN "User" u ON "user_ID" = u.id`;
+    let client;
     try {
-        const client = await pool.connect();
+        client = await pool.connect();
         const result = await client.query(query);
         console.log(result.rows);
         return result.rows;
