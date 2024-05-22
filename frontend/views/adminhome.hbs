@@ -6,21 +6,14 @@
 
 <div class="table-responsive">
 
-    <div class="extra-bars">
-        <a href="/admintechnicians" class="btn btn-link techlink">
-        <i class="fas fa-user"></i> 
-        Technicians List 
-        </a>
-
-        <div class="status-filter">
-            <label for="statusFilter">Status:</label>
-            <select id="statusFilter">
-                <option value="">All</option>
-                <option value="fixed">Fixed</option>
-                <option value="to fix">To Fix</option>
-                <option value="in progress">In Progress</option>
-            </select>
-        </div>
+    <div class="status-filter">
+        <label for="statusFilter">Status:</label>
+        <select id="statusFilter">
+            <option value="">All</option>
+            <option value="fixed">Fixed</option>
+            <option value="to fix">To Fix</option>
+            <option value="in progress">In Progress</option>
+        </select>
     </div>
 
     <table id="myTable" class="admintable table-light table-striped">
@@ -30,69 +23,29 @@
                 <th scope="col">Date</th>
                 <th scope="col">Location</th>
                 <th scope="col">Image</th>
+                <th scope="col">Category</th>
                 <th scope="col">Description</th>
+                <th scope="col">Reported by</th>
                 <th scope="col">Status</th>
-                <th scope="col">Edit</th>
+                <th scope="col">Actions</th>
             </tr>
         </thead>
         <tbody>
-            <!-- Other rows... -->
+            {{#each damageTickets}}
             <tr>
-                <th scope="row">1</th>
-                <td>2/12/2024</td>
-                <td>Otto</td>
+                <th scope="row">{{this.id}}</th>
+                <td class="date">{{this.report_date}}</td>
+                <td>{{this.location}}</td>
+                <td><a class="view-image btn btn-link icon-button" data-toggle="modal" data-target="#viewImageModal"
+                        data-image="{{this.image}}">view</a></td>
+                <td>{{this.category}}</td>
                 <td>
-                    <button type="button" class="btn btn-link imageModalButton" data-toggle="modal" data-target="#imageModal1"> 
-                        View
-                    </button>
-                    <div class="modal fade" id="imageModal1" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel1" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="imageModalLabel1">Image</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <img src="https://via.placeholder.com/150" alt="Image description" class="img-fluid">
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </td>
-                <td> 
-                    <button type="button" class="btn btn-link modalButton" data-toggle="modal" data-target="#exampleModal">
+                    <button type="button" class="btn btn-link modalButton" data-toggle="modal" data-target="#exampleModal-{{this.id}}">
                         Click to view text
                     </button>
                 </td>
-                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Description</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body modalBody">
-                                dsfhusdjghsdjkfhusayfuoasjdfyuadsy  
-                                fddsgfgf
-                                bfgfhdfkjg j fhdkj bfdjghdf gdf fjdbgfdg
-                                fgdfgufdkg fixed
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <td>
-                    <p class="status">In progress</p>
-                </td>
+                <td>{{this.user_username}}</td>
+                <td class="status"><strong>{{this.status}}</strong></td>
                 <td> 
                     <button type="button" class="btn btn-link icon-button">
                         <i class="fas fa-pencil-alt"></i> 
@@ -105,125 +58,108 @@
                     </button>
                 </td>
             </tr>
-            <!-- Other rows... -->
-            <!-- Other rows... -->
-            <tr>
-                <th scope="row">2</th>
-                <td>2/10/2024</td>
-                <td>Otto</td>
-                <td>
-                    <button type="button" class="btn btn-link imageModalButton" data-toggle="modal" data-target="#imageModal1"> 
-                        View
-                    </button>
-                    <div class="modal fade" id="imageModal1" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel1" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="imageModalLabel1">Image</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <img src="https://via.placeholder.com/150" alt="Image description" class="img-fluid">
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                </div>
-                            </div>
+
+            <div class="modal fade" id="exampleModal-{{this.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel-{{this.id}}"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel-{{this.id}}">Description</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
                         </div>
-                    </div>
-                </td>
-                <td> 
-                    <button type="button" class="btn btn-link modalButton" data-toggle="modal" data-target="#exampleModal">
-                        Click to view text
-                    </button>
-                </td>
-                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Description</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body modalBody">
-                                fgfgfhgf fdisfkh dfbufdjgbgfudfvn c fhugurhjfbgdfugr
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            </div>
+                        <div class="modal-body modalBody">
+                            {{this.description}}
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         </div>
                     </div>
                 </div>
-                <td>
-                    <p class="status">Fixed</p>
-                </td>
-                <td> 
-                    <button type="button" class="btn btn-link icon-button">
-                        <i class="fas fa-pencil-alt"></i> 
-                    </button>
-                    <button type="button" class="btn btn-link icon-button">
-                        <i class="fas fa-trash"></i>
-                    </button>
-                    <button type="button" class="btn btn-link icon-button">
-                        <i class="fas fa-user"></i> 
-                    </button>
-                </td>
-            </tr>
-            <!-- Other rows... -->
+            </div>
+            {{/each}}
         </tbody>
     </table>
 </div>
 
+<!-- View Image Modal -->
+<div class="modal fade" id="viewImageModal" tabindex="-1" role="dialog" aria-labelledby="viewImageModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="viewImageModalLabel">Image</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <img id="modalImage" src="" alt="Damage Image" class="img-fluid w-100">
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
-    var modalBodies = document.getElementsByClassName('modalBody');
-    var modalButtons = document.getElementsByClassName('modalButton');
-
-    for (var i = 0; i < modalBodies.length; i++) {
-        var modalBody = modalBodies[i].textContent.trim();
-        var modalButton = modalButtons[i];
-
-        // Set the button text to the first 12 characters of the trimmed modal body text
-        modalButton.textContent = modalBody.substring(0, 12) + '...';
-
-        // Set the button title to the full modal body text
-        modalButton.title = modalBody;
+    function changeStatusColor() {
+        var statusCells = document.querySelectorAll('.status');
+        statusCells.forEach(function (cell) {
+            var status = cell.textContent;
+            if (status === 'To Fix') {
+                cell.style.color = 'red';
+            } else if (status === 'Fixed') {
+                cell.style.color = 'green';
+            } else if (status === 'In Progress') {
+                cell.style.color = 'yellow';
+            }
+        });
     }
 
-    var statusCells = document.getElementsByClassName('status');
+    function viewImage(event) {
+        event.preventDefault();
+        var link = event.target.closest('a');
+        var imageUrl = link.getAttribute('data-image');
+        var modalImage = document.getElementById('modalImage');
+        modalImage.src = imageUrl;
+    }
 
-    for (var i = 0; i < statusCells.length; i++) {
-        var statusCell = statusCells[i];
-        var statusText = statusCell.textContent.trim().toLowerCase();
+    function trimDescription() {
+        var modalBodies = document.getElementsByClassName('modalBody');
+        var modalButtons = document.getElementsByClassName('modalButton');
 
-        if (statusText === 'fixed') {
-            statusCell.classList.add('status-fixed');
-        } else if (statusText === 'to fix') {
-            statusCell.classList.add('status-to-fix');
-        } else if (statusText === 'in progress') {
-            statusCell.classList.add('status-in-progress');
+        for (var i = 0; i < modalBodies.length; i++) {
+            var modalBody = modalBodies[i].textContent.trim();
+            var modalButton = modalButtons[i];
+            modalButton.textContent = modalBody.substring(0, 12) + '...';
+            modalButton.title = modalBody;
         }
     }
-    
-    /*********** status dropdown *******************/
-    document.getElementById('statusFilter').addEventListener('change', function() {
-    var filter = this.value.toLowerCase();
-    var rows = document.querySelectorAll('tbody tr');
 
-    for (var i = 0; i < rows.length; i++) {
-        var row = rows[i];
-        var statusCell = row.querySelector('.status');
-        var statusText = statusCell.textContent.trim().toLowerCase();
+    changeStatusColor();
+    trimDescription();
 
-        if (filter === '' || statusText === filter) {
-            row.style.display = '';
-        } else {
-            row.style.display = 'none';
+    document.addEventListener('DOMContentLoaded', function () {
+        var viewLinks = document.querySelectorAll('.view-image');
+        viewLinks.forEach(function (link) {
+            link.addEventListener('click', viewImage);
+        });
+    });
+
+    document.getElementById('statusFilter').addEventListener('change', function () {
+        var filter = this.value.toLowerCase();
+        var rows = document.querySelectorAll('tbody tr');
+        for (var i = 0; i < rows.length; i++) {
+            var row = rows[i];
+            var statusCell = row.querySelector('.status');
+            var statusText = statusCell.textContent.trim().toLowerCase();
+            if (filter === '' || statusText === filter) {
+                row.style.display = '';
+            } else {
+                row.style.display = 'none';
+            }
         }
-    }
-});
+    });
 </script>
 
 

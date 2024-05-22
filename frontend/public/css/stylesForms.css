@@ -317,18 +317,6 @@
 
 /******* status drop down *************/
 
-.extra-bars{
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 10px;
-}
-
-.techlink {
-    display: block;
-    font-family: 'Roboto Mono', monospace;
-    color: rgb(216, 214, 214) !important;
-}
-
 .status-filter label {
     margin-right: -7px; /* Adjust as needed */
 }

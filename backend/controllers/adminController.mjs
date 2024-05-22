@@ -1,8 +1,13 @@
-import { getAllTechnicians , addTechnician} from "../postgresql/model.mjs";
+import { getAllTechnicians , addTechnician, getAllDamageTickets} from "../postgresql/model.mjs";
 
-export const adminhome = (req, res) => {
-    res.render('adminhome');
-}
+export const adminhome = async (req,res) =>{
+    try {
+       const damageTickets = await getAllDamageTickets();
+       res.render('adminhome', { damageTickets });
+    } catch (error) {
+       throw error;
+    }
+ };
 
 export let adminTechnicians = async (req, res) => {
     try {
@@ -13,7 +18,7 @@ export let adminTechnicians = async (req, res) => {
         console.error(err);
         res.status(500).send('Server Error');
     }
-}
+};
 
 export let addTechnicianController = async (req, res) => {
     try {
