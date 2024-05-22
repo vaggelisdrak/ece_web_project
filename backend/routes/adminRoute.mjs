@@ -1,10 +1,11 @@
 import express from 'express';
 import { adminhome, adminTechnicians , addTechnicianController } from '../controllers/adminController.mjs';
+import { checkAdminAuthorized, checkAuthenticated } from '../controllers/authController.mjs';
 
 const router = express.Router();
 
-router.get('/adminhome', adminhome);
-router.get('/admintechnicians', adminTechnicians);
-router.post('/admintechnicians/addTechnician', addTechnicianController);
+router.get('/adminhome',checkAuthenticated,checkAdminAuthorized ,adminhome);
+router.get('/admintechnicians',checkAuthenticated,checkAdminAuthorized ,adminTechnicians);
+router.post('/admintechnicians/addTechnician',checkAuthenticated,checkAdminAuthorized, addTechnicianController);
 
 export default router;
