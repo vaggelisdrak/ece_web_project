@@ -27,11 +27,9 @@
                 <th scope="col">Description</th>
                 <th scope="col">Reported by</th>
                 <th scope="col">Status</th>
-
             </tr>
         </thead>
         <tbody>
-
             {{#each damageTickets}}
             <tr>
                 <th scope="row">{{this.id}}</th>
@@ -41,34 +39,34 @@
                         data-image="{{this.image}}">view</a></td>
                 <td>{{this.category}}</td>
                 <td>
-                    <button type="button" class="btn btn-link modalButton" data-toggle="modal" data-target="#exampleModal">
+                    <button type="button" class="btn btn-link modalButton" data-toggle="modal" data-target="#exampleModal-{{this.id}}">
                         Click to view text
                     </button>
                 </td>
-                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                        aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Description</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body modalBody">
-                                    {{this.description}}
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 <td>{{this.user_username}}</td>
                 <td class="status"><strong>{{this.status}}</strong></td>
             </tr>
-            {{/each}}
 
+            <div class="modal fade" id="exampleModal-{{this.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel-{{this.id}}"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel-{{this.id}}">Description</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body modalBody">
+                            {{this.description}}
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
         </tbody>
     </table>
 </div>
@@ -91,15 +89,11 @@
     </div>
 </div>
 
-
 <script>
     function changeStatusColor() {
-        // Get all elements with class 'status'
         var statusCells = document.querySelectorAll('.status');
         statusCells.forEach(function (cell) {
-            // Get the status value
             var status = cell.textContent;
-            // Change the color of the cell based on the status value
             if (status === 'To Fix') {
                 cell.style.color = 'red';
             } else if (status === 'Fixed') {
@@ -111,14 +105,9 @@
     }
 
     function viewImage(event) {
-        // Prevent the default action
         event.preventDefault();
-
-        // Get the clicked link and its data attributes
         var link = event.target.closest('a');
         var imageUrl = link.getAttribute('data-image');
-
-        // Set the src attribute of the modal image
         var modalImage = document.getElementById('modalImage');
         modalImage.src = imageUrl;
     }
@@ -130,48 +119,33 @@
         for (var i = 0; i < modalBodies.length; i++) {
             var modalBody = modalBodies[i].textContent.trim();
             var modalButton = modalButtons[i];
-
-            // Set the button text to the first 12 characters of the trimmed modal body text
             modalButton.textContent = modalBody.substring(0, 12) + '...';
-
-            // Set the button title to the full modal body text
             modalButton.title = modalBody;
         }
     }
 
     changeStatusColor();
-
     trimDescription();
 
     document.addEventListener('DOMContentLoaded', function () {
-        // Attach event listener to all "View" links
         var viewLinks = document.querySelectorAll('.view-image');
         viewLinks.forEach(function (link) {
             link.addEventListener('click', viewImage);
         });
-
-        // Attach event listener to all edit buttons
-        var editButtons = document.querySelectorAll('.icon-button[data-target="#editTechnicianModal"]');
-        editButtons.forEach(function (button) {
-            button.addEventListener('click', populateEditModal);
-        });
     });
 
-    /*********** status dropdown ******************/
     document.getElementById('statusFilter').addEventListener('change', function () {
         var filter = this.value.toLowerCase();
         var rows = document.querySelectorAll('tbody tr');
-
         for (var i = 0; i < rows.length; i++) {
             var row = rows[i];
             var statusCell = row.querySelector('.status');
             var statusText = statusCell.textContent.trim().toLowerCase();
-
             if (filter === '' || statusText === filter) {
                 row.style.display = '';
             } else {
                 row.style.display = 'none';
             }
         }
-        });
+    });
 </script>
