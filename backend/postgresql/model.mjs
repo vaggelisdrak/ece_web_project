@@ -280,22 +280,74 @@ export let addTechnician = async (technician) => {
 };
 
 //Assign Damage Ticket to Technician
-export let assignDamageTicket = async (adminId, damageTicketId, technicianId, repair_cost) => {
-    const query = 'INSERT INTO "Assign" ("admin_ID", "damageTicket_ID", "technician_ID", "assignment_date", "repair_cost") VALUES ($1, $2, $3, $4, $5) RETURNING *';
-    const values = [adminId, damageTicketId, technicianId, new Date(), repair_cost];
+export let assignDamageTicket = async (adminId, damageTicketId, technicianIds, repair_cost) => {
+    for (let technicianId of technicianIds) {
+        const checkQuery = 'SELECT 1 FROM "Assign" WHERE "admin_ID" = $1 AND "damageTicket_ID" = $2 AND "technician_ID" = $3';
+        const insertQuery = 'INSERT INTO "Assign" ("admin_ID", "damageTicket_ID", "technician_ID", "assignment_date", "repair_cost") VALUES ($1, $2, $3, $4, $5) RETURNING *';
+        repair_cost = repair_cost || 0;
+        const values = [adminId, damageTicketId, technicianId, new Date(), repair_cost];
+
+        let client;
+        try {
+            client = await pool.connect();
+            // Check if the assignment already exists
+            const result = await client.query(checkQuery, [adminId, damageTicketId, technicianId]);
+            if (result.rows.length === 0) {
+                // Insert the assignment if it does not exist
+                await client.query(insertQuery, values);
+            } else {
+                //update the assignment if it exists (all 3 keys same)
+                const updateQuery = 'UPDATE "Assign" SET "repair_cost" = $5 WHERE "admin_ID" = $1 AND "damageTicket_ID" = $2 AND "technician_ID" = $3 AND "assignment_date" = $4  RETURNING *';
+                await client.query(updateQuery, values);
+            }
+        } catch (err) {
+            console.error('Error assigning damage ticket to technician:', err);
+            throw err;
+        } finally {
+            await client.release();
+        }
+    }
     let client;
     try {
         client = await pool.connect();
-        await client.query(query, values);
+        //delete all the other assignments with the same damage ticket id and admin id but not in the technician ids
+        // Ensure technicianIds is an array
+        const technicianArray = Array.isArray(technicianIds) ? technicianIds : [technicianIds];
+
+        // Proceed with the rest of the code
+        const deleteQueryBase = 'DELETE FROM "Assign" WHERE "admin_ID" = $1 AND "damageTicket_ID" = $2 AND "technician_ID" NOT IN (';
+        const technicianPlaceholders = technicianArray.map((_, index) => `$${index + 3}`).join(', ');
+        const deleteQuery = deleteQueryBase + technicianPlaceholders + ')';
+
+        // Combine all the parameters into one array
+        const queryParams = [adminId, damageTicketId, ...technicianArray];
+
+        await client.query(deleteQuery, queryParams);
     } catch (err) {
-        console.error('Error assigning damage ticket to technician:', err);
+        console.error('Error deleting removed assignments:', err);
         throw err;
     } finally {
         await client.release();
     }
+
 };      
 
 //View Assignment of a Damage Ticket
+export let getAssignments = async (damageTicketId,admin_ID) => {
+    const query = 'SELECT * FROM "Assign" WHERE "damageTicket_ID" = $1 AND "admin_ID" = $2';
+    const values = [damageTicketId,admin_ID];
+    let client;
+    try {
+        client = await pool.connect();
+        const result = await client.query(query, values);
+        return result.rows;
+    } catch (err) {
+        console.error('Error fetching assignments:', err);
+        throw err;
+    } finally {
+        await client.release();
+    }
+};
 
 /****** update status *******/
 

@@ -20,7 +20,14 @@ app.use(express.static(path.join(__dirname, 'frontend', 'public')));
 
 app.set('views', path.join(__dirname, 'frontend', 'views'));
 
-app.engine('hbs', engine({ extname: 'hbs' }));
+app.engine('hbs', engine({ 
+    extname: 'hbs',
+    helpers: {
+        includes: function (array, value) {
+            return array && array.includes(value);
+        }
+    } 
+}));
 app.set('view engine', 'hbs');
 
 app.use(bodyParser.urlencoded({ extended: true }));

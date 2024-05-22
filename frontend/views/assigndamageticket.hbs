@@ -1,5 +1,5 @@
 <div class="arrow-plus">
-    <button class="back-button" onclick="goBack()"><i class="fas fa-arrow-circle-left"></i></button>
+    <a href="/adminhome" class="back-button"><i class="fas fa-arrow-circle-left"></i></a>
 </div>
 
 
@@ -65,12 +65,13 @@
     <br/>
 </div>
 
-<form method="post" action="/adminassigndamageticket/{{damageTicket.id}}" style="border: 1px solid yellow; padding: 10px; border-radius: 10px;">
+<form method="post" action="/adminassigndamageticket/{{damageTicket.id}}" onsubmit="return validateForm()" style="border: 1px solid yellow; padding: 10px; border-radius: 10px;">
     <div style="margin-left: 5px;" class="yellow-checkbox">
-        <input type="number" placeholder="Enter repair cost" name="cost" class="input-group" >
+        <input type="number" placeholder="Enter repair cost" name="cost" class="input-group" value="{{cost}}">
         {{#each technicians}}
         <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="{{this.id}}" id="flexCheckDefault" name="technicians">
+            <input class="form-check-input" type="checkbox" value="{{this.id}}" id="flexCheckDefault" name="technicians"  
+                {{#if (includes ../checkedTechnicians this.id)}}checked{{/if}}>
             <label class="form-check-label" for="flexCheckDefault">
                 {{this.full_name}} - {{this.phone_number}} - {{this.specialty}}
             </label>
@@ -136,6 +137,17 @@
             modalButton.textContent = modalBody.substring(0, 12) + '...';
             modalButton.title = modalBody;
         }
+    }
+
+    function validateForm() {
+        const checkboxes = document.querySelectorAll('.form-check-input');
+                for (let i = 0; i < checkboxes.length; i++) {
+            if (checkboxes[i].checked) {
+                return true; // If at least one checkbox is checked, allow form submission
+            }
+        }
+                alert('Please select at least one technician.');
+                return false; // Prevent form submission
     }
 
     changeStatusColor();

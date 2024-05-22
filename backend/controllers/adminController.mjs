@@ -1,4 +1,4 @@
-import { getAllTechnicians , addTechnician, getAllDamageTickets, getDamageTicket, assignDamageTicket, updateDamageStatus, deleteDamageTicket} from "../postgresql/model.mjs";
+import { getAllTechnicians , addTechnician, getAllDamageTickets, getDamageTicket, assignDamageTicket, updateDamageStatus, deleteDamageTicket, getAssignments} from "../postgresql/model.mjs";
 
 export const adminhome = async (req,res) =>{
     try {
@@ -39,9 +39,7 @@ export let assignDamageTickettoTechnician = async (req, res) => {
         const damageTicketId = req.params.id;
         console.log('Technician:', technicians);
         console.log('Damage Ticket ID:', damageTicketId);
-        for (let technician of technicians) {
-            await assignDamageTicket(req.session.loggedUserId, damageTicketId, technician, cost);
-        }
+        await assignDamageTicket(req.session.loggedUserId, damageTicketId, technicians, cost);
         res.redirect(`/adminassigndamageticket/${damageTicketId}`);
     } catch (error) {
         throw error;
@@ -52,8 +50,18 @@ export let showDamageTicket = async (req, res) => {
     try {
         const damageTicket = await getDamageTicket(req.params.id);
         const technicians = await getAllTechnicians();
+        const userId = req.session.loggedUserId;
+        const assignments = await getAssignments(req.params.id, userId);
+        //get repair cost and checked techinicans
+
+        const cost = assignments[0]?.repair_cost;
+        let checkedTechnicians = [];
+        for (let assignment of assignments) {
+            checkedTechnicians.push(assignment.technician_ID);
+        }
+        console.log('checked technicians:', checkedTechnicians);
         req.session.isAdmin = true;
-        res.render('assigndamageticket', { damageTicket, isAdmin: req.session.isAdmin, technicians});
+        res.render('assigndamageticket', { damageTicket, isAdmin: req.session.isAdmin, technicians, checkedTechnicians, cost});
     } catch (error) {
         throw error;
     }
