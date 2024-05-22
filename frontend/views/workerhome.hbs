@@ -41,7 +41,7 @@
                         
                     <a class="btn btn-link icon-button" data-toggle="modal" data-target="#editTechnicianModal" data-id="{{this.id}}"><i class="fas fa-pencil-alt"></i></a>
                     
-                    <a href="/workerhome/remove/{{id}}" class="btn btn-link icon-button"><i class="fas fa-trash"></i></a>
+                    <a href="/workerhome/remove/{{this.id}}" class="btn btn-link icon-button"><i class="fas fa-trash"></i></a>
 
                 </td>
             </tr>
@@ -135,7 +135,7 @@
             <div class="modal-body">
                 <div class="post-form">
                     <h2>Edit a Damage Ticket</h2>
-                    <form id="editForm" method="post" action="/workerhome/update/{{data-id}}" enctype="multipart/form-data">
+                    <form id="editForm" action="/workerhome/update/ID" method="post" enctype="multipart/form-data">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fas fa-map-marker-alt"></i></span>
                             <select id="editLocation" name="location" required>
@@ -236,6 +236,41 @@
         });
     }
 
+    function populateEditModal(event) {
+        // Get the clicked button and its data attributes
+        var button = event.target.closest('a');
+        var id = button.getAttribute('data-id');
+
+        // Fetch the row corresponding to the clicked button
+        var row = button.closest('tr');
+        var location = row.cells[2].textContent;
+        var category = row.cells[4].textContent;
+        var description = row.cells[5].textContent;
+
+        // Populate the modal fields with the fetched data
+        document.getElementById('editLocation').value = location;
+        document.getElementById('editCategory').value = category;
+        document.getElementById('editDescription').textContent = description;
+
+        console.log('location is ',document.getElementById('editLocation').value)
+
+        // Update the form action to include the correct ID
+        document.getElementById('editForm').action = '/workerhome/update/' + id.toString();
+    }
+    
+    function viewImage(event) {
+        // Prevent the default action
+        event.preventDefault();
+
+        // Get the clicked link and its data attributes
+        var link = event.target.closest('a');
+        var imageUrl = link.getAttribute('data-image');
+
+        // Set the src attribute of the modal image
+        var modalImage = document.getElementById('modalImage');
+        modalImage.src = imageUrl;
+    }
+    
     // Get all elements with class 'date' and trim the date
     var dateCells = document.querySelectorAll('.date');
     dateCells.forEach(function (cell) {
@@ -246,40 +281,6 @@
     changeStatusColor();
 
     document.addEventListener('DOMContentLoaded', function () {
-        // Function to populate the edit modal with the selected ticket data
-        function populateEditModal(event) {
-            // Get the clicked button and its data attributes
-            var button = event.target.closest('a');
-            var id = button.getAttribute('data-id');
-
-            // Fetch the row corresponding to the clicked button
-            var row = button.closest('tr');
-            var location = row.cells[2].textContent;
-            var category = row.cells[4].textContent;
-            var description = row.cells[5].textContent;
-
-            // Populate the modal fields with the fetched data
-            document.getElementById('editLocation').value = location;
-            document.getElementById('editCategory').value = category;
-            document.getElementById('editDescription').textContent = description;
-
-            // Update the form action to include the correct ID
-            document.getElementById('editForm').action = '/workerhome/update/' + id.toString();
-        }
-
-        function viewImage(event) {
-            // Prevent the default action
-            event.preventDefault();
-
-            // Get the clicked link and its data attributes
-            var link = event.target.closest('a');
-            var imageUrl = link.getAttribute('data-image');
-
-            // Set the src attribute of the modal image
-            var modalImage = document.getElementById('modalImage');
-            modalImage.src = imageUrl;
-        }
-
         // Attach event listener to all "View" links
         var viewLinks = document.querySelectorAll('.view-image');
         viewLinks.forEach(function (link) {

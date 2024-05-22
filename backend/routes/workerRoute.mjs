@@ -9,6 +9,6 @@ const upload = multer({ storage: storage });
 router.get('/workerhome', showAllUserDamageTickets);
 router.post('/workerhome',upload.single('image') ,postDamageTicket);
 router.get('/workerhome/remove/:id',removeDamageTicket);
-router.post('/workerhome/update/:id',editDamageTicket);
+router.post('/workerhome/update/:id',upload.single('image') ,editDamageTicket);
 
 export default router;

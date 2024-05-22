@@ -22,6 +22,7 @@ export const showAllUserDamageTickets = async (req, res) => {
 
 export const postDamageTicket = async (req, res) => {
     try {
+        console.log('req.body',req.body)
         const { location, category, description } = req.body;
         const userId = req.session.loggedUserId;
         console.log('user id is ',userId)
