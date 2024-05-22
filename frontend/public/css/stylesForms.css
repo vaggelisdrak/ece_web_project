@@ -100,7 +100,7 @@
     color: #343a40;
 }
 
-.post-form input, .post-form textarea {
+.post-form input, .post-form textarea, .post-form select {
     width: 100%;
     padding: 10px;
     padding-left: 30px;

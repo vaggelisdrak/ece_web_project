@@ -34,6 +34,15 @@ app.use((err, req, res, next) => {
    res.status(500).render('error', { error: 'An error has happened' });
 });
 
+app.use((req, res, next) => {
+   if (req.session) {
+      res.locals.userId = req.session.loggedUserId;
+   } else {
+      res.locals.userId = 'visitor';
+   }
+   next();
+});
+
 //Routes
 app.use('/', homeRoute);
 app.use('/', authRoute);

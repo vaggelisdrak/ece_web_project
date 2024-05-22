@@ -1,10 +1,6 @@
 import bcrypt from 'bcrypt'
 import { getAllAdmins, getUserByEmail, getUserByUsername, registerUser } from '../postgresql/model.mjs';
 
-export const showPostDamageForm = (req, res) => {
-    res.render('damagepost');
-}
-
 export let showLogInForm = function (req, res) {
     res.render('login');
 }

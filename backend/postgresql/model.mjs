@@ -37,10 +37,10 @@ export let getDamageTicket = async (damageTicketId) => {
 export let getAllUserDamageTickets = async (userId) => {
     const query = 'SELECT * FROM "DamageTicket" WHERE "user_ID" = $1';
     const values = [userId];
+    let client;
     try {
-        const client = await pool.connect();
+        client = await pool.connect();
         const result = await client.query(query, values);
-        console.log(result.rows);
         return result.rows;
     } catch (err) {
         console.error('Error fetching user posts:', err);
@@ -69,7 +69,7 @@ export let addDamageTicket = async (newDamageTicket, userId) => {
     const query = `
         INSERT INTO "DamageTicket" 
         ("status", "image", "location", "category", "description", "user_ID", "report_date")
-        VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+        VALUES ($1, $2, $3, $4, $5, $6, $7)
         RETURNING *;
     `;
     const values = [
@@ -78,8 +78,8 @@ export let addDamageTicket = async (newDamageTicket, userId) => {
         newDamageTicket.location,
         newDamageTicket.category,
         newDamageTicket.description,
-        userId,
-        newDamageTicket.reportDate
+        newDamageTicket.user_ID || userId,
+        newDamageTicket.report_date
     ];
 
     let client;
@@ -98,7 +98,7 @@ export let addDamageTicket = async (newDamageTicket, userId) => {
     }
 };
 export let updateDamageTicket = async (damageTicketId, updatedFields) => {
-    // Construct the SET part of the SQL query dynamically based on the fields provided in updatedFields
+    // Construct the SET part of the SQL query dynamically based on the fields provided in updatedFields'
     const setClause = Object.keys(updatedFields)
         .map((key, index) => `"${key}" = $${index + 2}`)
         .join(', ');
@@ -111,6 +111,7 @@ export let updateDamageTicket = async (damageTicketId, updatedFields) => {
     `;
 
     const values = [damageTicketId, ...Object.values(updatedFields)];
+    //console.log(values);
 
     let client;
     try {

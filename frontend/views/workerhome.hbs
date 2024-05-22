@@ -1,10 +1,295 @@
-<div class="post-form">
-    <h2>Worker - Home</h2>
-    <form>
-        <div class="input-group">
-            <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
-            <input type="text" placeholder="Enter your profession" required />
-        </div>
-        <button type="submit">Continue</button>
-    </form>
+
+<div class="arrow-plus">
+    <button class="add-button" data-toggle="modal" data-target="#addTechnicianModal"><i
+            class="fas fa-plus-circle"></i></button>
 </div>
+
+<h1 class="technicians title">
+    <i class="fas fa-tools d-none d-sm-inline"></i>
+    Your Damage Tickets
+    <i class="fas fa-tools d-none d-sm-inline"></i>
+</h1>
+
+<div class="table-responsive">
+
+    <table id="myTable" class="technicianstable table-light table-striped">
+        <thead>
+            <tr>
+            <th scope="col">#</th>
+            <th scope="col">Date</th>
+            <th scope="col">Location</th>
+            <th scope="col">Image</th>
+            <th scope="col">Category</th>
+            <th scope="col">Description</th>
+            <th scope="col">Status</th>
+            <th scope="col">Edit</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            {{#each userDamageTickets}}
+            <tr>
+                <th scope="row">{{this.id}}</th>
+                <td class="date">{{this.report_date}}</td>
+                <td>{{this.location}}</td>
+                <td><a class="view-image btn btn-link icon-button" data-toggle="modal" data-target="#viewImageModal"
+                        data-image="{{this.image}}" >view</a></td>
+                <td>{{this.category}}</td>
+                <td>{{this.description}}</td>
+                <td class="status"><strong>{{this.status}}</strong></td>
+                <td>
+                        
+                    <a class="btn btn-link icon-button" data-toggle="modal" data-target="#editTechnicianModal" data-id="{{this.id}}"><i class="fas fa-pencil-alt"></i></a>
+                    
+                    <a href="/workerhome/remove/{{id}}" class="btn btn-link icon-button"><i class="fas fa-trash"></i></a>
+
+                </td>
+            </tr>
+            {{/each}}
+
+        </tbody>
+    </table>
+</div>
+
+<!-- Post Modal -->
+<div class="modal fade" id="addTechnicianModal" tabindex="-1" role="dialog" aria-labelledby="addTechnicianModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addTechnicianModalLabel">Report a damage</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="post-form">
+                    <h2>Add a Damage Ticket</h2>
+                    <form action="/workerhome" method="post" enctype="multipart/form-data">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fas fa-map-marker-alt"></i></span>
+                            <select name="location" required>
+                                <option value="" disabled selected>Select Location</option>
+                                <option value="Area-1">Area-1</option>
+                                <option value="Area-2">Area-2</option>
+                                <option value="Area-3">Area-3</option>
+                                <option value="Area-4">Area-4</option>
+                                <option value="Area-5">Area-5</option>
+                                <option value="Area-6">Area-6</option>
+                                <option value="Area-7">Area-7</option>
+                                <option value="Area-8">Area-8</option>
+                                <option value="Area-9">Area-9</option>
+                                <option value="Area-10">Area-10</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fas fa-image"></i></span>
+                            <input type="file" accept="image/*" name="image" required />
+                        </div>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fas fa-tags"></i></span>
+                            <select name="category" required>
+                                <option value="" disabled selected>Select Category</option>
+                                <option value="Category-1">Category-1</option>
+                                <option value="Category-2">Category-2</option>
+                                <option value="Category-3">Category-3</option>
+                                <option value="Category-4">Category-4</option>
+                                <option value="Category-5">Category-5</option>
+                                <option value="Category-6">Category-6</option>
+                                <option value="Category-7">Category-7</option>
+                                <option value="Category-8">Category-8</option>
+                                <option value="Category-9">Category-9</option>
+                                <option value="Category-10">Category-10</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
+                            <textarea placeholder="Description" name="description" required></textarea>
+                        </div>
+                        <br />
+                        <button type="submit" style="margin-bottom: 10px;">Post</button>
+                        <br />
+                        {{#if message}}
+                        <div class="alert alert-success" role="alert">
+                            {{message}}
+                        </div>
+                        {{/if}}
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Edit Modal -->
+<div class="modal fade" id="editTechnicianModal" tabindex="-1" role="dialog" aria-labelledby="editTechnicianModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editTechnicianModalLabel">Edit a damage ticket</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="post-form">
+                    <h2>Edit a Damage Ticket</h2>
+                    <form id="editForm" method="post" action="/workerhome/update/{{data-id}}" enctype="multipart/form-data">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fas fa-map-marker-alt"></i></span>
+                            <select id="editLocation" name="location" required>
+                                <option value="" disabled>Select Location</option>
+                                <option value="Area-1">Area-1</option>
+                                <option value="Area-2">Area-2</option>
+                                <option value="Area-3">Area-3</option>
+                                <option value="Area-4">Area-4</option>
+                                <option value="Area-5">Area-5</option>
+                                <option value="Area-6">Area-6</option>
+                                <option value="Area-7">Area-7</option>
+                                <option value="Area-8">Area-8</option>
+                                <option value="Area-9">Area-9</option>
+                                <option value="Area-10">Area-10</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fas fa-image"></i></span>
+                            <input id="editImage" type="file" accept="image/*" name="image" />
+                        </div>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fas fa-tags"></i></span>
+                            <select id="editCategory" name="category" required>
+                                <option value="" disabled>Select Category</option>
+                                <option value="Category-1">Category-1</option>
+                                <option value="Category-2">Category-2</option>
+                                <option value="Category-3">Category-3</option>
+                                <option value="Category-4">Category-4</option>
+                                <option value="Category-5">Category-5</option>
+                                <option value="Category-6">Category-6</option>
+                                <option value="Category-7">Category-7</option>
+                                <option value="Category-8">Category-8</option>
+                                <option value="Category-9">Category-9</option>
+                                <option value="Category-10">Category-10</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fas fa-pencil-alt"></i></span>
+                            <textarea id="editDescription" placeholder="Description" name="description"
+                                required></textarea>
+                        </div>
+                        <br />
+                        <button type="submit" style="margin-bottom: 10px;">Edit</button>
+                        <br />
+                        {{#if message}}
+                        <div class="alert alert-success" role="alert">
+                            {{message}}
+                        </div>
+                        {{/if}}
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- View Image Modal -->
+<div class="modal fade" id="viewImageModal" tabindex="-1" role="dialog" aria-labelledby="viewImageModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="viewImageModalLabel">Image</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <img id="modalImage" src="" alt="Damage Image" class="img-fluid w-100">
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Function to trim the date to show only year and month
+    function trimDate(dateString) {
+        // Split the date string by "-" to get the year and month
+        let newDate = dateString.slice(0, 10);
+        // Return the trimmed date string
+        return newDate;
+    }
+
+    function changeStatusColor() {
+        // Get all elements with class 'status'
+        var statusCells = document.querySelectorAll('.status');
+        statusCells.forEach(function (cell) {
+            // Get the status value
+            var status = cell.textContent;
+            // Change the color of the cell based on the status value
+            if (status === 'To Fix') {
+                cell.style.color = 'red';
+            } else if (status === 'Fixed') {
+                cell.style.color = 'green';
+            } else if (status === 'In Progress') {
+                cell.style.color = 'yellow';
+            }
+        });
+    }
+
+    // Get all elements with class 'date' and trim the date
+    var dateCells = document.querySelectorAll('.date');
+    dateCells.forEach(function (cell) {
+        cell.textContent = trimDate(cell.textContent);
+    });
+
+    // Call the function to change the color of the status cells
+    changeStatusColor();
+
+    document.addEventListener('DOMContentLoaded', function () {
+        // Function to populate the edit modal with the selected ticket data
+        function populateEditModal(event) {
+            // Get the clicked button and its data attributes
+            var button = event.target.closest('a');
+            var id = button.getAttribute('data-id');
+
+            // Fetch the row corresponding to the clicked button
+            var row = button.closest('tr');
+            var location = row.cells[2].textContent;
+            var category = row.cells[4].textContent;
+            var description = row.cells[5].textContent;
+
+            // Populate the modal fields with the fetched data
+            document.getElementById('editLocation').value = location;
+            document.getElementById('editCategory').value = category;
+            document.getElementById('editDescription').textContent = description;
+
+            // Update the form action to include the correct ID
+            document.getElementById('editForm').action = '/workerhome/update/' + id.toString();
+        }
+
+        function viewImage(event) {
+            // Prevent the default action
+            event.preventDefault();
+
+            // Get the clicked link and its data attributes
+            var link = event.target.closest('a');
+            var imageUrl = link.getAttribute('data-image');
+
+            // Set the src attribute of the modal image
+            var modalImage = document.getElementById('modalImage');
+            modalImage.src = imageUrl;
+        }
+
+        // Attach event listener to all "View" links
+        var viewLinks = document.querySelectorAll('.view-image');
+        viewLinks.forEach(function (link) {
+            link.addEventListener('click', viewImage);
+        });
+
+        // Attach event listener to all edit buttons
+        var editButtons = document.querySelectorAll('.icon-button[data-target="#editTechnicianModal"]');
+        editButtons.forEach(function (button) {
+            button.addEventListener('click', populateEditModal);
+        });
+    });
+</script>
