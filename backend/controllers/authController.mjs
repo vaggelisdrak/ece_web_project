@@ -91,3 +91,21 @@ export let checkAuthenticated = function (req, res, next) {
         }
     }
 }
+
+export let checkAdminAuthorized = async function (req, res, next) {
+    const userId = req.session.loggedUserId;
+    //check if user is admin
+    const admins = await getAllAdmins();
+    let redirectTo;
+
+    if (admins.find(admin => admin.admin_ID === userId)) {
+        console.log("admin authorized");
+        next();
+    }
+    else {
+        console.log("user logged in");
+        req.session.isAdmin = false;
+        redirectTo = req.session.originalUrl || "/workerhome";
+        res.redirect(redirectTo);
+    }
+}
