@@ -1,6 +1,6 @@
 <h1 class="damages title">
     <i class="fas fa-tools d-none d-sm-inline"></i>
-    Damage List
+    Damage Ticket List
     <i class="fas fa-tools d-none d-sm-inline"></i>
 </h1>
 
@@ -40,7 +40,30 @@
                 <td><a class="view-image btn btn-link icon-button" data-toggle="modal" data-target="#viewImageModal"
                         data-image="{{this.image}}">view</a></td>
                 <td>{{this.category}}</td>
-                <td>{{this.description}}</td>
+                <td>
+                    <button type="button" class="btn btn-link modalButton" data-toggle="modal" data-target="#exampleModal">
+                        Click to view text
+                    </button>
+                </td>
+                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Description</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body modalBody">
+                                    {{this.description}}
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 <td>{{this.user_username}}</td>
                 <td class="status"><strong>{{this.status}}</strong></td>
             </tr>
@@ -100,7 +123,25 @@
         modalImage.src = imageUrl;
     }
 
+    function trimDescription() {
+        var modalBodies = document.getElementsByClassName('modalBody');
+        var modalButtons = document.getElementsByClassName('modalButton');
+
+        for (var i = 0; i < modalBodies.length; i++) {
+            var modalBody = modalBodies[i].textContent.trim();
+            var modalButton = modalButtons[i];
+
+            // Set the button text to the first 12 characters of the trimmed modal body text
+            modalButton.textContent = modalBody.substring(0, 12) + '...';
+
+            // Set the button title to the full modal body text
+            modalButton.title = modalBody;
+        }
+    }
+
     changeStatusColor();
+
+    trimDescription();
 
     document.addEventListener('DOMContentLoaded', function () {
         // Attach event listener to all "View" links
