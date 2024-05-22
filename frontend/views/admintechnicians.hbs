@@ -82,4 +82,37 @@
     function goBack() {
     window.history.back();
     }
+    
+    document.getElementById('addtech').addEventListener('click', function() {
+        var tech_id = document.getElementById('tech_id').value;
+        var name = document.getElementById('name').value;
+        var email = document.getElementById('email').value;
+        var contact = document.getElementById('contact').value;
+        var specialty = document.getElementById('specialty').value;
+
+        var technicianData = {
+            id: tech_id,
+            name: name,
+            email: email,
+            contact: contact,
+            specialty: specialty
+        };
+
+        fetch('/admintechnicians/addTechnician', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(technicianData),
+        })
+        .then(response => {
+            console.log('Success:', response);
+            if (response.redirected) {
+                window.location.href = response.url;
+            }
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+    });
 </script>
