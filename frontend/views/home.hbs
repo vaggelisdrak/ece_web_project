@@ -1,7 +1,7 @@
 <h1 class="damages title">
-    <i class="fas fa-tools d-none d-sm-inline"></i> 
+    <i class="fas fa-tools d-none d-sm-inline"></i>
     Damage List
-    <i class="fas fa-tools d-none d-sm-inline"></i> 
+    <i class="fas fa-tools d-none d-sm-inline"></i>
 </h1>
 
 <div class="table-responsive">
@@ -22,296 +22,115 @@
                 <th scope="col">#</th>
                 <th scope="col">Date</th>
                 <th scope="col">Location</th>
-                <th scope="col">Category</th>
                 <th scope="col">Image</th>
+                <th scope="col">Category</th>
                 <th scope="col">Description</th>
+                <th scope="col">Reported by</th>
                 <th scope="col">Status</th>
+
             </tr>
         </thead>
         <tbody>
-            <!-- Other rows... -->
+
+            {{#each damageTickets}}
             <tr>
-                <th scope="row">1</th>
-                <td>2/12/2024</td>
-                <td>Otto</td>
-                <td>Category</td>
-                <td>
-                    <button type="button" class="btn btn-link imageModalButton" data-toggle="modal" data-target="#imageModal1"> 
-                        View
-                    </button>
-                    <div class="modal fade" id="imageModal1" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel1" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="imageModalLabel1">Image</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <img src="https://via.placeholder.com/150" alt="Image description" class="img-fluid">
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </td>
-                <td> 
-                    <button type="button" class="btn btn-link modalButton" data-toggle="modal" data-target="#exampleModal">
-                        Click to view text
-                    </button>
-                </td>
-                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Description</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body modalBody">
-                                dsfhusdjghsdjkfhusayfuoasjdfyuadsy  
-                                fddsgfgf
-                                bfgfhdfkjg j fhdkj bfdjghdf gdf fjdbgfdg
-                                fgdfgufdkg fixed
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <td>
-                    <p class="status">In progress</p>
-                </td>
+                <th scope="row">{{this.id}}</th>
+                <td class="date">{{this.report_date}}</td>
+                <td>{{this.location}}</td>
+                <td><a class="view-image btn btn-link icon-button" data-toggle="modal" data-target="#viewImageModal"
+                        data-image="{{this.image}}">view</a></td>
+                <td>{{this.category}}</td>
+                <td>{{this.description}}</td>
+                <td>{{this.user_username}}</td>
+                <td class="status"><strong>{{this.status}}</strong></td>
             </tr>
-            <!-- Other rows... -->
-            <!-- Other rows... -->
-            <tr>
-                <th scope="row">2</th>
-                <td>2/10/2024</td>
-                <td>Otto</td>
-                <td>Category</td>
-                <td>
-                    <button type="button" class="btn btn-link imageModalButton" data-toggle="modal" data-target="#imageModal1"> 
-                        View
-                    </button>
-                    <div class="modal fade" id="imageModal1" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel1" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="imageModalLabel1">Image</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <img src="https://via.placeholder.com/150" alt="Image description" class="img-fluid">
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </td>
-                <td> 
-                    <button type="button" class="btn btn-link modalButton" data-toggle="modal" data-target="#exampleModal">
-                        Click to view text
-                    </button>
-                </td>
-                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Description</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body modalBody">
-                                fgfgfhgf fdisfkh dfbufdjgbgfudfvn c fhugurhjfbgdfugr
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <td>
-                    <p class="status">Fixed</p>
-                </td>
-            </tr>
-            <!-- Other rows... -->
-            <!-- Other rows... -->
-            <tr>
-                <th scope="row">3</th>
-                <td>8/10/2024</td>
-                <td>Area</td>
-                <td>Category</td>
-                <td>
-                    <button type="button" class="btn btn-link imageModalButton" data-toggle="modal" data-target="#imageModal1"> 
-                        View
-                    </button>
-                    <div class="modal fade" id="imageModal1" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel1" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="imageModalLabel1">Image</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <img src="https://via.placeholder.com/150" alt="Image description" class="img-fluid">
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </td>
-                <td> 
-                    <button type="button" class="btn btn-link modalButton" data-toggle="modal" data-target="#exampleModal">
-                        Click to view text
-                    </button>
-                </td>
-                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Description</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body modalBody">
-                                fgfgfhgf fdisfkh dfbufdjgbgfudfvn c fhugurhjfbgdfugr vfgfgdfghfjgufdhgfnbvjhfdgvf
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <td>
-                    <p class="status">To Fix</p>
-                </td>
-            </tr>
-            <!-- Other rows... -->
-            <!-- Other rows... -->
-            <tr>
-                <th scope="row">4</th>
-                <td>2/10/2024</td>
-                <td>Area 2</td>
-                <td>Category</td>
-                <td>
-                    <button type="button" class="btn btn-link imageModalButton" data-toggle="modal" data-target="#imageModal1"> 
-                        Image
-                    </button>
-                    <div class="modal fade" id="imageModal1" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel1" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="imageModalLabel1">Image</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <img src="https://via.placeholder.com/150" alt="Image description" class="img-fluid">
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </td>
-                <td> 
-                    <button type="button" class="btn btn-link modalButton" data-toggle="modal" data-target="#exampleModal">
-                        Click to view text
-                    </button>
-                </td>
-                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Description</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body modalBody">
-                                fgfgfhgf fdisfkh dfbufdjgbgfudfvn c fhugurhjfbgdfugr
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <td>
-                    <p class="status">Fixed</p>
-                </td>
-            </tr>
-            <!-- Other rows... -->
+            {{/each}}
+
         </tbody>
     </table>
 </div>
 
+<!-- View Image Modal -->
+<div class="modal fade" id="viewImageModal" tabindex="-1" role="dialog" aria-labelledby="viewImageModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="viewImageModalLabel">Image</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <img id="modalImage" src="" alt="Damage Image" class="img-fluid w-100">
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <script>
-    var modalBodies = document.getElementsByClassName('modalBody');
-    var modalButtons = document.getElementsByClassName('modalButton');
-
-    for (var i = 0; i < modalBodies.length; i++) {
-        var modalBody = modalBodies[i].textContent.trim();
-        var modalButton = modalButtons[i];
-
-        // Set the button text to the first 12 characters of the trimmed modal body text
-        modalButton.textContent = modalBody.substring(0, 12) + '...';
-
-        // Set the button title to the full modal body text
-        modalButton.title = modalBody;
+    function changeStatusColor() {
+        // Get all elements with class 'status'
+        var statusCells = document.querySelectorAll('.status');
+        statusCells.forEach(function (cell) {
+            // Get the status value
+            var status = cell.textContent;
+            // Change the color of the cell based on the status value
+            if (status === 'To Fix') {
+                cell.style.color = 'red';
+            } else if (status === 'Fixed') {
+                cell.style.color = 'green';
+            } else if (status === 'In Progress') {
+                cell.style.color = 'yellow';
+            }
+        });
     }
 
-    var statusCells = document.getElementsByClassName('status');
+    function viewImage(event) {
+        // Prevent the default action
+        event.preventDefault();
 
-    for (var i = 0; i < statusCells.length; i++) {
-        var statusCell = statusCells[i];
-        var statusText = statusCell.textContent.trim().toLowerCase();
+        // Get the clicked link and its data attributes
+        var link = event.target.closest('a');
+        var imageUrl = link.getAttribute('data-image');
 
-        if (statusText === 'fixed') {
-            statusCell.classList.add('status-fixed');
-        } else if (statusText === 'to fix') {
-            statusCell.classList.add('status-to-fix');
-        } else if (statusText === 'in progress') {
-            statusCell.classList.add('status-in-progress');
+        // Set the src attribute of the modal image
+        var modalImage = document.getElementById('modalImage');
+        modalImage.src = imageUrl;
+    }
+
+    changeStatusColor();
+
+    document.addEventListener('DOMContentLoaded', function () {
+        // Attach event listener to all "View" links
+        var viewLinks = document.querySelectorAll('.view-image');
+        viewLinks.forEach(function (link) {
+            link.addEventListener('click', viewImage);
+        });
+
+        // Attach event listener to all edit buttons
+        var editButtons = document.querySelectorAll('.icon-button[data-target="#editTechnicianModal"]');
+        editButtons.forEach(function (button) {
+            button.addEventListener('click', populateEditModal);
+        });
+    });
+
+    /*********** status dropdown ******************/
+    document.getElementById('statusFilter').addEventListener('change', function () {
+        var filter = this.value.toLowerCase();
+        var rows = document.querySelectorAll('tbody tr');
+
+        for (var i = 0; i < rows.length; i++) {
+            var row = rows[i];
+            var statusCell = row.querySelector('.status');
+            var statusText = statusCell.textContent.trim().toLowerCase();
+
+            if (filter === '' || statusText === filter) {
+                row.style.display = '';
+            } else {
+                row.style.display = 'none';
+            }
         }
-    }
-    
-    /*********** status dropdown *******************/
-    document.getElementById('statusFilter').addEventListener('change', function() {
-    var filter = this.value.toLowerCase();
-    var rows = document.querySelectorAll('tbody tr');
-
-    for (var i = 0; i < rows.length; i++) {
-        var row = rows[i];
-        var statusCell = row.querySelector('.status');
-        var statusText = statusCell.textContent.trim().toLowerCase();
-
-        if (filter === '' || statusText === filter) {
-            row.style.display = '';
-        } else {
-            row.style.display = 'none';
-        }
-    }
-});
+        });
 </script>
-
-
-

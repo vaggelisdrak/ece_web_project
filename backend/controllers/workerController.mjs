@@ -122,7 +122,6 @@ export const editDamageTicket = async (req, res) => {
     }
 };
 
-
 export const removeDamageTicket = async (req, res) => {
     try {
         const userId = req.session.loggedUserId;
