@@ -27,8 +27,9 @@ export let getAllDamageTickets = async () => {
 export let getDamageTicket = async (damageTicketId) => {
     const query = 'SELECT * FROM "DamageTicket" WHERE id = $1 LIMIT 1';
     const values = [damageTicketId];
+    let client;
     try {
-        const client = await pool.connect();
+        client = await pool.connect();
         const result = await client.query(query, values);
         return result.rows[0];
     } catch (err) {
@@ -277,3 +278,21 @@ export let addTechnician = async (technician) => {
         await client.release();
     }
 };
+
+//Assign Damage Ticket to Technician
+export let assignDamageTicket = async (adminId, damageTicketId, technicianId, repair_cost) => {
+    const query = 'INSERT INTO "Assign" ("admin_ID", "damageTicket_ID", "technician_ID", "assignment_date", "repair_cost") VALUES ($1, $2, $3, $4, $5) RETURNING *';
+    const values = [adminId, damageTicketId, technicianId, new Date(), repair_cost];
+    let client;
+    try {
+        client = await pool.connect();
+        await client.query(query, values);
+    } catch (err) {
+        console.error('Error assigning damage ticket to technician:', err);
+        throw err;
+    } finally {
+        await client.release();
+    }
+};      
+
+//View Assignment of a Damage Ticket

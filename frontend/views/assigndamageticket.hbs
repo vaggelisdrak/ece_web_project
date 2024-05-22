@@ -1,22 +1,18 @@
+<div class="arrow-plus">
+    <button class="back-button" onclick="goBack()"><i class="fas fa-arrow-circle-left"></i></button>
+</div>
+
+
 <h1 class="damages title">
     <i class="fas fa-tools d-none d-sm-inline"></i>
-    Damage Ticket List
+     Assign Damage Ticket to Technician
     <i class="fas fa-tools d-none d-sm-inline"></i>
 </h1>
 
+
 <div class="table-responsive">
 
-    <div class="status-filter">
-        <label for="statusFilter">Status:</label>
-        <select id="statusFilter">
-            <option value="">All</option>
-            <option value="fixed">Fixed</option>
-            <option value="to fix">To Fix</option>
-            <option value="in progress">In Progress</option>
-        </select>
-    </div>
-
-    <table id="myTable" class="hometable table-light table-striped">
+    <table id="myTable" class="table table-light table-striped">
         <thead>
             <tr>
                 <th scope="col">#</th>
@@ -25,40 +21,38 @@
                 <th scope="col">Image</th>
                 <th scope="col">Category</th>
                 <th scope="col">Description</th>
-                <th scope="col">Reported by</th>
                 <th scope="col">Status</th>
             </tr>
         </thead>
         <tbody>
-            {{#each damageTickets}}
             <tr>
-                <th scope="row">{{this.id}}</th>
-                <td class="date">{{this.report_date}}</td>
-                <td>{{this.location}}</td>
+                <th scope="row">{{damageTicket.id}}</th>
+                <td class="date">{{damageTicket.report_date}}</td>
+                <td>{{damageTicket.location}}</td>
                 <td><a class="view-image btn btn-link icon-button" data-toggle="modal" data-target="#viewImageModal"
-                        data-image="{{this.image}}">view</a></td>
-                <td>{{this.category}}</td>
+                        data-image="{{damageTicket.image}}">view</a></td>
+                <td>{{damageTicket.category}}</td>
                 <td>
-                    <button type="button" class="btn btn-link modalButton" data-toggle="modal" data-target="#exampleModal-{{this.id}}">
+                    <button type="button" class="btn btn-link modalButton" data-toggle="modal"
+                        data-target="#exampleModal-{{damageTicket.id}}">
                         Click to view text
                     </button>
                 </td>
-                <td>{{this.user_username}}</td>
-                <td class="status"><strong>{{this.status}}</strong></td>
+                <td class="status"><strong>{{damageTicket.status}}</strong></td>
             </tr>
 
-            <div class="modal fade" id="exampleModal-{{this.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel-{{this.id}}"
-                aria-hidden="true">
+            <div class="modal fade" id="exampleModal-{{damageTicket.id}}" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalLabel-{{damageTicket.id}}" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel-{{this.id}}">Description</h5>
+                            <h5 class="modal-title" id="exampleModalLabel-{{damageTicket.id}}">Description</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div class="modal-body modalBody">
-                            {{this.description}}
+                            {{damageTicket.description}}
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -66,10 +60,26 @@
                     </div>
                 </div>
             </div>
-            {{/each}}
         </tbody>
     </table>
+    <br/>
 </div>
+
+<form method="post" action="/adminassigndamageticket/{{damageTicket.id}}" style="border: 1px solid yellow; padding: 10px; border-radius: 10px;">
+    <div style="margin-left: 5px;" class="yellow-checkbox">
+        <input type="number" placeholder="Enter repair cost" name="cost" class="input-group" >
+        {{#each technicians}}
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="{{this.id}}" id="flexCheckDefault" name="technicians">
+            <label class="form-check-label" for="flexCheckDefault">
+                {{this.full_name}} - {{this.phone_number}} - {{this.specialty}}
+            </label>
+        </div>
+        {{/each}}
+    </div>
+    <br/>
+    <button type="submit" class="btn btn-warning" style="width: 100%;"><strong>Assign</strong></button>
+</form>
 
 <!-- View Image Modal -->
 <div class="modal fade" id="viewImageModal" tabindex="-1" role="dialog" aria-labelledby="viewImageModalLabel"
@@ -90,6 +100,10 @@
 </div>
 
 <script>
+    function goBack() {
+        window.history.back();
+    }
+    
     function changeStatusColor() {
         var statusCells = document.querySelectorAll('.status');
         statusCells.forEach(function (cell) {
@@ -134,18 +148,4 @@
         });
     });
 
-    document.getElementById('statusFilter').addEventListener('change', function () {
-        var filter = this.value.toLowerCase();
-        var rows = document.querySelectorAll('tbody tr');
-        for (var i = 0; i < rows.length; i++) {
-            var row = rows[i];
-            var statusCell = row.querySelector('.status');
-            var statusText = statusCell.textContent.trim().toLowerCase();
-            if (filter === '' || statusText === filter) {
-                row.style.display = '';
-            } else {
-                row.style.display = 'none';
-            }
-        }
-    });
 </script>

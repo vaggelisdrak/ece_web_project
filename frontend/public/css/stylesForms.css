@@ -438,3 +438,18 @@
     border:1px solid #fec313;
     box-shadow: 0 0 10px #fec313;
 }
+/*------------Checkboxes---------------*/
+
+.yellow-checkbox .form-check-input {
+        background-color: #fec313;
+        color: black;
+    }
+
+    .yellow-checkbox .form-check-input:checked {
+        background-color: #fec313;
+        color: black;
+    }
+
+    .yellow-checkbox .form-check-label {
+        color: white;
+    }
