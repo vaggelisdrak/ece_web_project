@@ -3,11 +3,13 @@ import { getAllTechnicians , addTechnician, getAllDamageTickets} from "../postgr
 export const adminhome = async (req,res) =>{
     try {
        const damageTickets = await getAllDamageTickets();
-       res.render('adminhome', { damageTickets });
+       req.session.isAdmin = true;
+       res.render('adminhome', { damageTickets, isAdmin: req.session.isAdmin});
     } catch (error) {
        throw error;
     }
  };
+
 
 export let adminTechnicians = async (req, res) => {
     try {

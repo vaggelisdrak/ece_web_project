@@ -70,7 +70,6 @@ export let doLogout = (req, res) => {
     res.redirect('/');
 }
 
-//Τη χρησιμοποιούμε για να ανακατευθύνουμε στη σελίδα /login όλα τα αιτήματα από μη συνδεδεμένους χρήστες
 export let checkAuthenticated = function (req, res, next) {
     //Αν η μεταβλητή συνεδρίας έχει τεθεί, τότε ο χρήστης είναι συνεδεμένος
     if (req.session.loggedUserId) {
