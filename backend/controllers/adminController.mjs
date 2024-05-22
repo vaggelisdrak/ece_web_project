@@ -1,4 +1,4 @@
-import { getAllTechnicians , addTechnician, getAllDamageTickets, getDamageTicket, assignDamageTicket} from "../postgresql/model.mjs";
+import { getAllTechnicians , addTechnician, getAllDamageTickets, getDamageTicket, assignDamageTicket, updateDamageStatus, deleteDamageTicket} from "../postgresql/model.mjs";
 
 export const adminhome = async (req,res) =>{
     try {
@@ -55,6 +55,34 @@ export let showDamageTicket = async (req, res) => {
         req.session.isAdmin = true;
         res.render('assigndamageticket', { damageTicket, isAdmin: req.session.isAdmin, technicians});
     } catch (error) {
+        throw error;
+    }
+}
+
+export const editDamageStatus = async (req, res) => {
+    try {
+        const { status } = req.body;
+        const damageTicketId = req.params.id; // Assuming the damage ticket ID is provided in the URL parameters
+        const userId = req.session.loggedUserId;
+        console.log('user id is ', userId);
+
+        // Call the function to update the damage ticket status in the database
+        await updateDamageStatus(damageTicketId, status);
+
+        res.redirect('/adminhome');
+    } catch (error) {
+        console.error('Error editing damage ticket status:', error);
+        res.status(500).send('Error editing damage ticket status: ' + error.message); // Send a response indicating an error occurred
+    }
+};
+
+export const removeDamageTicket = async (req, res) => {
+    try {
+        const userId = req.session.loggedUserId;
+        const ticket = await deleteDamageTicket(req.params.id);
+        res.redirect('/workerhome');
+    } catch (error) {
+        console.error('Error deleting damage ticket:', error);
         throw error;
     }
 }

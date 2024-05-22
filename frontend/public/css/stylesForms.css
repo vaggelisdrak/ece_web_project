@@ -441,15 +441,21 @@
 /*------------Checkboxes---------------*/
 
 .yellow-checkbox .form-check-input {
-        background-color: #fec313;
-        color: black;
-    }
+    background-color: #fec313;
+    color: black;
+}
 
-    .yellow-checkbox .form-check-input:checked {
-        background-color: #fec313;
-        color: black;
-    }
+.yellow-checkbox .form-check-input:checked {
+    background-color: #fec313;
+    color: black;
+}
 
-    .yellow-checkbox .form-check-label {
-        color: white;
-    }
+.yellow-checkbox .form-check-label {
+    color: white;
+}
+
+/*----------------------------------------*/
+
+.actions{
+    white-space: nowrap;
+}

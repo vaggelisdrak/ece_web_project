@@ -296,3 +296,30 @@ export let assignDamageTicket = async (adminId, damageTicketId, technicianId, re
 };      
 
 //View Assignment of a Damage Ticket
+
+/****** update status *******/
+
+export let updateDamageStatus = async (damageTicketId, status) => {
+    const query = `
+        UPDATE "DamageTicket"
+        SET "status" = $2
+        WHERE "id" = $1
+        RETURNING *;
+    `;
+
+    const values = [damageTicketId, status];
+
+    let client;
+    try {
+        client = await pool.connect();
+        const result = await client.query(query, values);
+        return result.rows[0];
+    } catch (err) {
+        console.error('Error updating damage ticket status:', err);
+        throw err;
+    } finally {
+        if (client) {
+            client.release();
+        }
+    }
+};

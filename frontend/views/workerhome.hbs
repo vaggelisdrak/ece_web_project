@@ -232,14 +232,19 @@
     function changeStatusColor() {
         var statusCells = document.querySelectorAll('.status');
         statusCells.forEach(function (cell) {
-            var status = cell.textContent;
-            if (status === 'To Fix') {
+            var status = cell.textContent.trim().toLowerCase(); 
+            if (status === 'to fix') {
                 cell.style.color = 'red';
-            } else if (status === 'Fixed') {
+                cell.textContent = 'To Fix'; 
+            } else if (status === 'fixed') {
                 cell.style.color = 'green';
-            } else if (status === 'In Progress') {
-                cell.style.color = 'yellow';
+                cell.textContent = 'Fixed'; 
+            } else if (status === 'in progress') {
+                cell.style.color = 'orange';
+                cell.textContent = 'In Progress'; 
             }
+            cell.style.fontWeight = 'bold';
+            cell.style.whiteSpace = 'nowrap'; 
         });
     }
 
