@@ -1,12 +1,20 @@
 import bcrypt from 'bcrypt'
 import { getAllAdmins, getUserByEmail, getUserByUsername, registerUser } from '../postgresql/model.mjs';
 
-export let showLogInForm = function (req, res) {
-    res.render('login');
+export let showLogInForm = function (req, res, next) {
+    try {
+        res.render('login');
+    } catch (error) {
+        res.render('error', { message: error.message });
+    } 
 }
 
-export let showRegisterForm = function (req, res) {
-    res.render('register');
+export let showRegisterForm = function (req, res, next) {
+    try {
+        res.render('register');
+    } catch (error) {
+        res.render('error', { message: error.message });
+    }
 }
 
 export let doRegister = async function (req, res) {
@@ -21,13 +29,11 @@ export let doRegister = async function (req, res) {
         }
     } catch (error) {
         console.error('registration error: ' + error);
-        //FIXME: δε θα έπρεπε να περνάμε το εσωτερικό σφάλμα στον χρήστη
-        //res.render('register-password', { message: error });
-        res.render('register', { message: 'An error occurred during registration' });
+        res.render('error', { message: error.message });
     }
 }
 
-export let doLogin = async function (req, res) {
+export let doLogin = async function (req, res, next) {
     //Ελέγχει αν το username και το password είναι σωστά και εκτελεί την
     //συνάρτηση επιστροφής authenticated
     try {
@@ -61,6 +67,7 @@ export let doLogin = async function (req, res) {
         }
     } catch (error) {
         console.error('login error: ' + error);
+        res.render('error', { message: error.message });
     }
 }
 

@@ -36,8 +36,8 @@ app.use(userSession)
 
 // Error handling middleware
 app.use((err, req, res, next) => {
-   console.error(err.stack);
-   res.status(500).render('error', { error: 'An error has happened' });
+   console.error('middleware',err.stack);
+   res.render('error', { message: 'An error has happened' });
 });
 
 app.use((req, res, next) => {
