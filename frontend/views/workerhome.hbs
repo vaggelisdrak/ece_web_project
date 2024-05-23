@@ -268,17 +268,43 @@
         }
     }
 
+    function getDescriptionById(modalId) {
+        // Select the modal element by its ID
+        const modal = document.getElementById(`descriptionModal-${modalId}`);
+
+        // Check if the modal exists
+        if (modal) {
+            // Find the modal-body element within the modal
+            const modalBody = modal.querySelector('.modalBody');
+
+            // Check if the modal-body element exists and return its text content
+            if (modalBody) {
+                return modalBody.textContent.trim();
+            } else {
+                console.error('Modal body element not found');
+                return null;
+            }
+        } else {
+            console.error('Modal element not found');
+            return null;
+        }
+    }
+
     function populateEditModal(event) {
         var button = event.target.closest('a');
         var id = button.getAttribute('data-id');
         var row = button.closest('tr');
         var location = row.cells[2].textContent;
         var category = row.cells[4].textContent;
-        var description = row.cells[5].textContent;
+        //var description = row.cells[5].textContent;
+        //console.log('description',description);
+        //var fullDescription = document.getElementsByClassName('modal-body modalBody');
+        //console.log('full descr',fullDescription);
+        var fullDescription = getDescriptionById(id);
 
         document.getElementById('editLocation').value = location;
         document.getElementById('editCategory').value = category;
-        document.getElementById('editDescription').textContent = description;
+        document.getElementById('editDescription').textContent = fullDescription;
 
         document.getElementById('editForm').action = '/workerhome/update/' + id.toString();
     }

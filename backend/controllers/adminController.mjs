@@ -37,8 +37,6 @@ export let assignDamageTickettoTechnician = async (req, res) => {
     try {
         const { technicians,cost } = req.body;
         const damageTicketId = req.params.id;
-        console.log('Technician:', technicians);
-        console.log('Damage Ticket ID:', damageTicketId);
         await assignDamageTicket(req.session.loggedUserId, damageTicketId, technicians, cost);
         res.redirect(`/adminassigndamageticket/${damageTicketId}`);
     } catch (error) {
