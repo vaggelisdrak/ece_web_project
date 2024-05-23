@@ -47,11 +47,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form id="addTechnicianForm">
-            <div class="form-group">
-                <label for="id">ID</label>
-                <input type="text" class="form-control" id="tech_id" name="tech_id" required>
-            </div>
+        <form id="addTechnicianForm" action="admintechnicians/addTechnician" method="post">
             <div class="form-group">
                 <label for="name">Name</label>
                 <input type="text" class="form-control" id="name" name="name" required>
@@ -68,11 +64,11 @@
                 <label for="specialty">Specialty</label>
                 <input type="text" class="form-control" id="specialty" name="specialty" required>
             </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" id="addtech" class="btn btn-primary addtech">Add</button>
+            </div>
         </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" id="addtech" class="btn btn-primary addtech">Add</button>
       </div>
     </div>
   </div>
@@ -84,35 +80,16 @@
     }
     
     document.getElementById('addtech').addEventListener('click', function() {
-        var tech_id = document.getElementById('tech_id').value;
         var name = document.getElementById('name').value;
         var email = document.getElementById('email').value;
         var contact = document.getElementById('contact').value;
         var specialty = document.getElementById('specialty').value;
 
         var technicianData = {
-            id: tech_id,
             name: name,
             email: email,
             contact: contact,
             specialty: specialty
         };
-
-        fetch('/admintechnicians/addTechnician', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(technicianData),
-        })
-        .then(response => {
-            console.log('Success:', response);
-            if (response.redirected) {
-                window.location.href = response.url;
-            }
-        })
-        .catch((error) => {
-            console.error('Error:', error);
-        });
     });
 </script>
