@@ -10,17 +10,17 @@ cloudinary.config({
 });
 
 
-export const showAllUserDamageTickets = async (req, res) => {
+export const showAllUserDamageTickets = async (req, res, next) => {
     try {
         const userId = req.session.loggedUserId;
         const userDamageTickets = await getAllUserDamageTickets(userId);
         res.render('workerhome', { userDamageTickets: userDamageTickets});
     } catch (error) {
-        throw error;
+        res.render('error', { message: error.message });
     }
 }
 
-export const postDamageTicket = async (req, res) => {
+export const postDamageTicket = async (req, res, next) => {
     try {
         console.log('req.body',req.body)
         const { location, category, description } = req.body;
@@ -69,13 +69,12 @@ export const postDamageTicket = async (req, res) => {
         res.redirect('/workerhome');
     } catch (error) {
         console.error('Error posting damage ticket:', error);
-        throw error;
+        res.render('error', { message: error.message });
     }
 };
 
-export const editDamageTicket = async (req, res) => {
+export const editDamageTicket = async (req, res, next) => {
     try {
-        console.log('req bodyyyy',req.body)
         const { location, category, description } = req.body;
         const damageTicketId = req.params.id; // Assuming the damage ticket ID is provided in the URL parameters
         const userId = req.session.loggedUserId;
@@ -118,17 +117,18 @@ export const editDamageTicket = async (req, res) => {
         res.redirect('/workerhome');
     } catch (error) {
         console.error('Error editing damage ticket:', error);
-        res.status(500).send('Error editing damage ticket: ' + error.message); // Send a response indicating an error occurred
+        //res.status(500).send('Error editing damage ticket: ' + error.message); // Send a response indicating an error occurred
+        res.render('error', { message: error.message });
     }
 };
 
-export const removeDamageTicket = async (req, res) => {
+export const removeDamageTicket = async (req, res, next) => {
     try {
         const userId = req.session.loggedUserId;
         const ticket = await deleteDamageTicket(req.params.id);
         res.redirect('/workerhome');
     } catch (error) {
         console.error('Error deleting damage ticket:', error);
-        throw error;
+        res.render('error', { message: error.message });
     }
 }
