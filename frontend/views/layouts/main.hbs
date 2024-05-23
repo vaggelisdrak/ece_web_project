@@ -98,6 +98,22 @@
             ]
         });
 
+        $('.assigntable').DataTable({
+            columnDefs: [
+                { 
+                    targets: [1], 
+                    render: function (data) {
+                        return moment(data).format().slice(0, 10);
+                    }
+                }
+            ],
+            ordering: false, 
+            searching: false, 
+            lengthChange: false, 
+            info: false, 
+            paging: false
+        });
+
         $('.technicianstable').DataTable({
             columnDefs: [
                 { targets: [1, 2, 3, 4], orderable: false },

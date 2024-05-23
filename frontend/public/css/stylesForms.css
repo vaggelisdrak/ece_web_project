@@ -149,7 +149,12 @@
 }
 
 /* background color of the table header */
-.table thead th {
+.hometable thead th {
+    background-color: #343a40; 
+    color: rgb(216, 214, 214); 
+}
+
+.assigntable thead th {
     background-color: #343a40; 
     color: rgb(216, 214, 214); 
 }
@@ -165,7 +170,11 @@
 }
 
 /* background color of the table rows */
-.table tbody tr {
+.hometable tbody tr {
+    color: rgb(216, 214, 214); 
+}
+
+.assigntable tbody tr {
     color: rgb(216, 214, 214); 
 }
 
@@ -178,7 +187,12 @@
 }
 
 /* color of the table text */
-.table tbody tr td {
+.hometable tbody tr td {
+    color: #343a40; 
+    border: none; 
+}
+
+.assigntable tbody tr td {
     color: #343a40; 
     border: none; 
 }
@@ -193,7 +207,12 @@
     border: none; 
 }
 
-.table tbody tr th {
+.hometable tbody tr th {
+    color: #343a40; 
+    border: none; 
+}
+
+.assigntable tbody tr th {
     color: #343a40; 
     border: none; 
 }
@@ -209,7 +228,15 @@
 }
 
 /* font family of the table text */
-.table {
+.hometable {
+    font-family: 'Roboto Mono', monospace;
+    letter-spacing: 1px;
+    border: none;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.assigntable {
     font-family: 'Roboto Mono', monospace;
     letter-spacing: 1px;
     border: none;
@@ -280,7 +307,7 @@
     font-family: 'Roboto Mono', monospace;
 }
 
-.table thead th {
+.hometable thead th {
     border-top: none;
 }
 
