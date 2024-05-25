@@ -1,7 +1,6 @@
 import express from 'express'
 import bodyParser from 'body-parser'; 
 import { engine } from 'express-handlebars'
-import mysql from 'mysql'
 import * as dotenv from 'dotenv'
 import homeRoute from './routes/homeRoute.mjs'
 import authRoute from './routes/authRoute.mjs'
