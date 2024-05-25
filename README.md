@@ -2,7 +2,6 @@
 
 Εργασία αναφοράς βλαβών σε υποδομές
 
-FlowChart
 ![image](https://github.com/vaggelisdrak/ece_web_project/assets/71725114/776c03fb-2c9c-41c9-8505-be0139984696)
 
 Οδηγίες εγκατάστασης:
