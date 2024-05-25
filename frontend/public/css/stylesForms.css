@@ -275,25 +275,25 @@
 }
 
 .dataTables_filter input {
-    color: #ffc107; /* Change the text color */
-    font-size: 16px; /* Change the font size */
-    background-color: rgb(216, 214, 214); /* Change the background color */
+    color: #ffc107; 
+    font-size: 16px; 
+    background-color: rgb(216, 214, 214);
 }
 
 .dataTables_length select {
-    color: rgb(216, 214, 214); /* Change the text color */
-    font-size: 16px; /* Change the font size */
+    color: rgb(216, 214, 214); 
+    font-size: 16px; 
 }
 
-/* Change the text color of the dropdown options */
+/* text color of the dropdown options */
 .dataTables_length select option {
-    color: #212529; /* Dark grey color */
+    color: #212529; 
 }
 
 .dataTables_paginate .paginate_button {
-    color: #ffc107; /* Change the text color */
-    font-size: 16px; /* Change the font size */
-    background-color: rgb(216, 214, 214); /* Change the background color */
+    color: #ffc107; 
+    font-size: 16px; 
+    background-color: rgb(216, 214, 214); 
 }
 
 .dataTables_filter label,
@@ -315,12 +315,12 @@
     border-top: none;
 }
 
-/* Center and enlarge the image in the modal */
+/* image in the modal */
 .modal-body img {
     display: block;
     margin: auto;
-    width: 300px; /* Adjust as needed */
-    height: 300px; /* Adjust as needed */
+    width: 300px; 
+    height: 300px; 
 }
 
 .status-fixed {
@@ -345,7 +345,7 @@
 /******* status drop down *************/
 
 .status-filter label {
-    margin-right: -7px; /* Adjust as needed */
+    margin-right: -7px; 
 }
 
 .status-filter {
@@ -485,4 +485,33 @@
 
 .actions{
     white-space: nowrap;
+}
+
+/******** update status modal *************/
+
+.status-dropdown {
+    width: 100%; 
+    padding: 10px; 
+    font-size: 16px; 
+    border-radius: 5px; 
+}
+
+.save-status {
+    background-color: #fec313; 
+    border:#fec313;
+    color: rgb(34, 34, 34);
+}
+
+.save-status:hover {
+    background-color: #ce9e0f; 
+    border:#ce9e0f;
+    color: rgb(34, 34, 34);
+}
+
+.save-status:active, .save-status:focus {
+    background-color: #ce9e0f; 
+    border: #ce9e0f;
+    color: rgb(34, 34, 34);
+    outline: none; 
+    box-shadow: none; 
 }
