@@ -3,9 +3,9 @@ import bcrypt from 'bcrypt'
 import pool from './connectdb.mjs';
 
 
-// Exported Functions for the DamageTicket Table
+/****** Exported Functions for the DamageTicket Table ******/
+
 export let getAllDamageTickets = async () => {
-    //const query = 'SELECT * FROM "DamageTicket"';
    const query = `
         SELECT dt.*, u.username AS user_username
         FROM "DamageTicket" dt
@@ -103,6 +103,7 @@ export let addDamageTicket = async (newDamageTicket, userId) => {
         }
     }
 };
+
 export let updateDamageTicket = async (damageTicketId, updatedFields) => {
     // Construct the SET part of the SQL query dynamically based on the fields provided in updatedFields'
     const setClause = Object.keys(updatedFields)
@@ -156,7 +157,32 @@ export let deleteDamageTicket = async (damageTicketId) => {
     }
 };
 
-// Exported Functions for the User Table
+export let updateDamageStatus = async (damageTicketId, status) => {
+    const query = `
+        UPDATE "DamageTicket"
+        SET "status" = $2
+        WHERE "id" = $1
+        RETURNING *;
+    `;
+
+    const values = [damageTicketId, status];
+
+    let client;
+    try {
+        client = await pool.connect();
+        const result = await client.query(query, values);
+        return result.rows[0];
+    } catch (err) {
+        console.error('Error updating damage ticket status:', err);
+        throw err;
+    } finally {
+        if (client) {
+            client.release();
+        }
+    }
+};
+
+/******* Exported Functions for the User Table *******/ 
 
 // Function to get a user by email
 export let getUserByEmail = async (email) => {
@@ -228,7 +254,7 @@ export let registerUser = async (username, email, password) => {
     }
 }
 
-// Exported Functions for the Admin Table
+/****** Exported Functions for the Admin Table ******/
 
 export let getAllAdmins = async () => {
     const query = 'SELECT * FROM "Admin"';
@@ -244,6 +270,8 @@ export let getAllAdmins = async () => {
         if (client) client.release();
     }
 };
+
+/****** Exported Functions for the Technician Table ******/
 
 // Get All Technicians 
 export let getAllTechnicians = async () => {
@@ -288,8 +316,11 @@ export let addTechnician = async (technician) => {
     }
 };
 
+/****** Exported Functions for the Assign Table ******/
+
 //Assign Damage Ticket to Technician
 export let assignDamageTicket = async (adminId, damageTicketId, technicianIds, repair_cost) => {
+    // add each checked technician to the assign table
     for (let technicianId of technicianIds) {
         const checkQuery = 'SELECT 1 FROM "Assign" WHERE "admin_ID" = $1 AND "damageTicket_ID" = $2 AND "technician_ID" = $3';
         const insertQuery = 'INSERT INTO "Assign" ("admin_ID", "damageTicket_ID", "technician_ID", "assignment_date", "repair_cost") VALUES ($1, $2, $3, $4, $5) RETURNING *';
@@ -305,7 +336,7 @@ export let assignDamageTicket = async (adminId, damageTicketId, technicianIds, r
                 // Insert the assignment if it does not exist
                 await client.query(insertQuery, values);
             } else {
-                //update the assignment if it exists (all 3 keys same)
+                //update the assignment (repair cost) if it exists (all 3 keys same)
                 const updateQuery = 'UPDATE "Assign" SET "repair_cost" = $5 WHERE "admin_ID" = $1 AND "damageTicket_ID" = $2 AND "technician_ID" = $3 AND "assignment_date" = $4  RETURNING *';
                 await client.query(updateQuery, values);
             }
@@ -320,6 +351,7 @@ export let assignDamageTicket = async (adminId, damageTicketId, technicianIds, r
     try {
         client = await pool.connect();
         //delete all the other assignments with the same damage ticket id and admin id but not in the technician ids
+
         // Ensure technicianIds is an array
         const technicianArray = Array.isArray(technicianIds) ? technicianIds : [technicianIds];
 
@@ -355,32 +387,5 @@ export let getAssignments = async (damageTicketId,admin_ID) => {
         throw err;
     } finally {
         await client.release();
-    }
-};
-
-/****** update status *******/
-
-export let updateDamageStatus = async (damageTicketId, status) => {
-    const query = `
-        UPDATE "DamageTicket"
-        SET "status" = $2
-        WHERE "id" = $1
-        RETURNING *;
-    `;
-
-    const values = [damageTicketId, status];
-
-    let client;
-    try {
-        client = await pool.connect();
-        const result = await client.query(query, values);
-        return result.rows[0];
-    } catch (err) {
-        console.error('Error updating damage ticket status:', err);
-        throw err;
-    } finally {
-        if (client) {
-            client.release();
-        }
     }
 };
